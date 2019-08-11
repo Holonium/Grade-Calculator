@@ -7,12 +7,19 @@
 int main(void){
 	int i;
 	int j;
+
+	int v;
+	
+	range = 10;	
 	
 	for(i = 0; i < 6; i++){
 		printf("%s", teacher_list);
 		scanf("%d", &teachers[i]);
-		
-		validateTeacher(teachers);
+	
+		v = validateTeacher(teachers, range);
+
+		if(v == 0){
+			printf("You have entered an invalid number!/n");
 	}		
 		//Put teachers here...
 
@@ -38,8 +45,9 @@ int main(void){
 		printf("%ssecond%s", grade1, grade2);
 		scanf("%lf", &quarterGrades[i][2]);
 		q12grade[i] = (q1grades[i] * q1weight[i]) + (q2grades[i] * q2weight[i]);
+		Percents = roundPercents(roundingFactor, percentagesRaw);
 		//Calculate necessary grades.
-		determineFinals(quarterGrades, quarterWeight, finalWeight);
+		Grades = determineFinals(quarterGrades, quarterWeight, finalWeight);
 		for(j = 0; j < 11; j++){
 			finals[i][j] = (percentages[i][j] - q12grade[i]) / (finalWeight[i]);
 		}

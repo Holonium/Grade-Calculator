@@ -11,8 +11,14 @@ double roundingFactor[6];
 
 double finals[6][11];
 
+//Pointers for return.
+
+int *Percents
+int *Grades
+
 //Teacher variables
 int teachers[6];
+int range;
 
 //Strings
 char grades[] = {'A','A','B','B','B','C','C','C','D','D','D'};
@@ -30,8 +36,8 @@ char *welcome = "Welcome to the grade calculator! This calculator will tell you 
 char *teacher_list = "Please enter the number of the teacher: ";
 
 //Functions
-int validateTeacher(int teachers[]);
-int roundPercents(double roundingFactor[], double percentagesRaw[][]);
-double *determineFinals(double quarterGrades[][], double quarterWeight[][], double finalWeight[]);
+int validateTeacher(int teachers[6], int range);
+double *roundPercents(double roundingFactor[6], double percentagesRaw[]);
+double *determineFinals(double quarterGrades[6][2], double quarterWeight[6][2], double finalWeight[6]);
 
 #endif
