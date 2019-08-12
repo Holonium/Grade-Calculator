@@ -9,7 +9,7 @@ int validateTeacher(int teachers[6], int range){
 	int valid1[6];
 	int valid2[6];
 	int i;
-	int v;
+	int v = 1;
 	for(i = 0; i < 6; i++){
 		if(teachers[i] <= range){
 			valid1[i] = 1;
