@@ -17,7 +17,7 @@ int *Percents;
 int *Grades;
 
 //Teacher variables
-int teachers[6];
+int *teachers;
 int range;
 
 //Strings
