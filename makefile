@@ -1,10 +1,12 @@
-grades.o : grades.c calc.o teachers.o validation.o calc.h
-	gcc -o grades.o grades.c
+grades : calc.o teachers.o validation.o grades.o
+	cc -o grades calc.o teachers.o validation.o grades.o
 calc.o : calc.c calc.h
-	gcc -o calc.o calc.h
+	cc -c calc.c
 teachers.o : teachers.c calc.h
-	gcc -o teachers.o teachers.c
+	cc -c teachers.c
 validation.o : validation.c calc.h
-	gcc -o validation.o validation.c
+	cc -c validation.c
+grades.o : grades.c calc.h
+	cc -c grades.c
 clean :
 	rm *.o

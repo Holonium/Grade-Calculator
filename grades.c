@@ -35,15 +35,15 @@ int main(void){
 		}
 	}		
 		//Put teachers in teachers.c...
-	for(i = 0; i < 6; i++){
+	/*for(i = 0; i < 6; i++){
 		if(teachers[i] == 1){
 			roundingFactor[i] = 0;
 			for(j = 0; j < 11; j++){
 				percentages[i][j] = percentagesRaw[j] - roundingFactor[i];
 			}
-			/*q1weight[i] = 0.45;
+			q1weight[i] = 0.45;
 			q2weight[i] = 0.45;
-			finalWeight[i] = 0.1;*/
+			finalWeight[i] = 0.1;
 			quarterWeight[i][1] = 0.45;
 			quarterWeight[i][2] = 0.45;
 			finalWeight[i] = 0.1;
@@ -56,17 +56,19 @@ int main(void){
 			q2weight[i] = 0.4;
 			finalWeight[i] = 0.2;
 		}
-	}
+	}*/
 	for(i = 0; i < 6; i++){
 		printf("%sfirst%s", grade1, grade2);
 		scanf("%lf", &quarterGrades[i][1]);
 		printf("%ssecond%s", grade1, grade2);
 		scanf("%lf", &quarterGrades[i][2]);
 		//q12grade[i] = (q1grades[i] * q1weight[i]) + (q2grades[i] * q2weight[i]);
-		Percents = roundPercents(roundingFactor, percentagesRaw);
+		roundPercents(roundingFactor, percentagesRaw);
 		//Calculate necessary grades.
-		Grades = determineFinals(quarterGrades, quarterWeight, finalWeight);
+		determineFinals(quarterGrades, quarterWeight, finalWeight);
 		/*for(j = 0; j < 11; j++){
 			finals[i][j] = (percentages[i][j] - q12grade[i]) / (finalWeight[i]);
 		}*/
 	}
+	return 0;
+}

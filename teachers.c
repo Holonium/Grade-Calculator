@@ -4,10 +4,9 @@
 #include <strings.h>
 #include "calc.h"
 
-double *teacherRound(int *teachers, double percentagesRaw[]){
+void teacherRound(int *teachers){
 	int i;
-	int j;
-	for(i = 0; i < 6; i++;){
+	for(i = 0; i < 6; i++){
 		if(teachers[i] == 1){
 			roundingFactor[i] = 0;
 		} else if(teachers[i] == 2){
@@ -26,13 +25,11 @@ double *teacherRound(int *teachers, double percentagesRaw[]){
 			roundingFactor[i] = 0;
 		}
 	}
-	return roundingFactor;
 }
 
-double *teacherQweight(int *teachers){
+void teacherQweight(int *teachers){
 	int i;
-	int j;
-	for(i = 0; i < 6; i++;){
+	for(i = 0; i < 6; i++){
 		if(teachers[i] == 1){
 			quarterWeight[i][1] = 0.45;
 			quarterWeight[i][2]= 0.45;
@@ -59,14 +56,12 @@ double *teacherQweight(int *teachers){
 			quarterWeight[i][2] = 0.45;
 		}
 	}
-	return quarterWeight;
 }
 
 
-double *teacherFweight(int *teachers){
+void teacherFweight(int *teachers){
 	int i;
-	int j;
-	for(i = 0; i < 6; i++;){
+	for(i = 0; i < 6; i++){
 		if(teachers[i] == 1){
 			finalWeight[i] = 0.1;
 		} else if(teachers[i] == 2){
@@ -85,6 +80,5 @@ double *teacherFweight(int *teachers){
 			finalWeight[i] = 0.1;
 		}
 	}
-	return finalWeight;
 }
 
