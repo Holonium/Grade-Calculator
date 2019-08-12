@@ -19,9 +19,9 @@ int main(void){
 	char *out2 = "%% to get a ";
 	char *out3 = " for this semester.";
 	char *welcome = "Welcome to the grade calculator! This calculator will tell you what you need on your final to get a certain letter grade for a class.";
-	char *teacher_list = "Please enter the number of the teacher: ";
+	char *teacher_list = "1) Mrs. Baker\n2) Mr. Sabatke\n3) Ms. Bright\n4) Mr. Ginorio\n5) Mr. McCormack\n6) Mr. Gabrielsen\n7) Mr. Harrison\n8) Mr. Williams\nPlease enter the number of the teacher: ";
 	
-	range = 10;	
+	range = 8;	
 	
 	for(i = 0; i < 6; i++){
 		printf("%s", teacher_list);
@@ -31,9 +31,10 @@ int main(void){
 
 		if(v == 0){
 			printf("You have entered an invalid number!/n");
+			i--;
 		}
 	}		
-		//Put teachers here...
+		//Put teachers in teachers.c...
 	for(i = 0; i < 6; i++){
 		if(teachers[i] == 1){
 			roundingFactor[i] = 0;

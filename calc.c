@@ -19,6 +19,7 @@ double *determineFinals(double quarterGrades[6][2], double quarterWeight[6][2], 
 	}
 	return finals;
 }
+
 double *roundPercents(double roundingFactor[6], double percentagesRaw[]){
 	int i;
 	int j;

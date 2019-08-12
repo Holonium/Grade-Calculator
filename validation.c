@@ -4,7 +4,7 @@
 #include <strings.h>
 #include "calc.h"
 
-int validateTeacher(int teachers[6], int range){
+int validateTeacher(int *teachers, int range){
 	int valid[6];
 	int valid1[6];
 	int valid2[6];
