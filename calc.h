@@ -1,12 +1,15 @@
 #ifndef CALC_H_
 #define CALC_H_
 
-//Functions
-extern int validateTeacher(int teachers, int range);
-extern int *roundPercents(int *percentsRaw, int *roundingFactors, int *percents);
-extern int *determineFinals(int *q12grades, int *finalWeight, int *finals);
-extern int *combineQuarters(int *quarterWeight, int *quarterGrade, int *q12grades);
-extern int *teacherRound(int *teachers, int *roundingFactors);
-extern int *teacherQweight(int *teachers, int *quarterWeight);
-extern int *teacherFweight(int *teachers, int *finalWeight);
+//Teacher functions, see teachers.c in final
+int validateInput(int input,int range);
+double detQuarterWeight1(int input);
+double detQuarterWeight2(int input);
+double detFinalWeight(int input);
+double detRoundingFactor(int input);
+
+//Mathematical functions, see calc.c in final
+double round(double roundingFactor,double percentagesRaw);
+double weightQuarters(double quarterWeight1, double quarterWeight2, double quarterGrade1, double quarterGrade2);
+double detFinal(double weighted, double percentage, double finalWeight);
 #endif
