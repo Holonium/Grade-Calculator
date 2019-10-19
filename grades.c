@@ -5,13 +5,13 @@
 #include "calc.h"
 
 int main(){
-	double version = 8.0;
+	double version = 8.01;
 	int periods;
 	double percentagesRaw[] = {93,90,87,83,80,77,73,70,67,63,60};
 	char grades[] = {'A','A','B','B','B','C','C','C','D','D','D'};
 	char symbol[] = {'\0','-','+','\0','-','+','\0','-','+','\0','-'};
 
-	printf("Welcome to v%d of the grade calculator.\n",version);
+	printf("Welcome to v%.2f of the grade calculator.\n",version);
 	printf("Please enter the number of periods that you wish to calculate grades for (1-8):");
 	scanf("%d", &periods);
 
@@ -23,7 +23,7 @@ int main(){
 	double fweights[periods];
 	double rounding[periods];
 	double percentages[periods][11];
-	double grades[periods][11];
+	double results[periods][11];
 
 	for(int i = 0; i < periods; i++){
 		char *teacher_list = "1) Mrs. Baker\n2) Mr. Sabatke\n3) Ms. Bright\n4) Mr. Ginorio\n5) Mr. McCormack\n6) Mr. Gabrielsen\n7) Mr. Harrison\n8) Mr. Williams\n9) Mr. Hall\n10) Mrs. Vaughan\n11) Mrs. Ketchum\n12) Ms. Solsvik\n13) Mr. Rigg\nPlease enter the number of the teacher for period ";
@@ -47,7 +47,7 @@ int main(){
 	for(int i = 0; i < periods; i++){
 		for(int j = 0; j < 11; j++){
 			percentages[i][j] = roundCalc(percentagesRaw[j], rounding[i]);
-			grades[i][j] = finalCalc(q1grades[i], q2grades[i], q1weights[i], q2weights[i], fweights[i], percentages[i][j]);
+			results[i][j] = finalCalc(q1grades[i], q2grades[i], q1weights[i], q2weights[i], fweights[i], percentages[i][j]);
 		}
 	}
 	for(int i = 0; i < periods; i++){
@@ -63,7 +63,7 @@ int main(){
 		int k = i + 1;
 
 		for(int j = 0; j < 11; j++){
-			if(finals[i][j] <= 0){
+			if(results[i][j] <= 0){
 				if(j <= 1){
 					printf("Period %d: %s%c%c%s\n",k,guaranteed1,grades[j],symbol[j],guaranteed3);
 				}
@@ -72,7 +72,7 @@ int main(){
 				}
 				j = 11;
 			} else {
-				printf("Period %d: %s%.2f%s%c%c%s\n",k,out1,finals[i][j],out2,grades[j],symbol[j],out3);
+				printf("Period %d: %s%.2f%s%c%c%s\n",k,out1,results[i][j],out2,grades[j],symbol[j],out3);
 			}
 		}
 	}
