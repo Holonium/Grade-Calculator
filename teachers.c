@@ -6,97 +6,200 @@
 
 double q1weight_select(int teacher){
 	double weight;
-	if(teacher == 1){
-		weight = 0.45;
-	} else if (teacher == 2)
+
+	switch(teacher){
+		case 1 : //Baker
+			weight = 0.45;
+			break;
+		case 2 : //Sabatke
+			weight = 0.4;
+			break;
+		case 3 : //Bright
+			weight = 0.45;
+			break;
+		case 4 : //Ginorio
+			weight = 0.45;
+			break;
+		case 5 : //McCormack
+			weight = 0.4;
+			break;
+		case 6 : //Gabrielsen
+			weight = 0.4;
+			break;
+		case 7 : //Harrison
+			weight = 0.45;
+			break;
+		case 8 : //Williams
+			weight = 0.45;
+			break;
+		case 9 : //Hall
+			weight = 0.4;
+			break;
+		case 10 : //Vaughan
+			weight = 0.4;
+			break;
+		case 11 : //Ketchum
+			weight = 0;
+			break;
+		case 12 : //Solsvik
+			weight = 0.4;
+			break;
+		case 13 : //Rigg
+			weight = 0.45;
+			break;
+		default :
+			weight = 7;
+	}
+
 	return weight;
 }
 
 double q2weight_select(int teacher){
 	double weight;
-	if(teacher == 1){
-		weight = 0.45;
+
+	switch(teacher){
+		case 1 : //Baker
+			weight = 0.1;
+			break;
+		case 2 : //Sabatke
+			weight = 0.2;
+			break;
+		case 3 : //Bright
+			weight = 0.1;
+			break;
+		case 4 : //Ginorio
+			weight = 0.1;
+			break;
+		case 5 : //McCormack
+			weight = 0.2;
+			break;
+		case 6 : //Gabrielsen
+			weight = 0.2;
+			break;
+		case 7 : //Harrison
+			weight = 0.1;
+			break;
+		case 8 : //Williams
+			weight = 0.1;
+			break;
+		case 9 : //Hall
+			weight = 0.2;
+			break;
+		case 10 : //Vaughan
+			weight = 0.2;
+			break;
+		case 11 : //Ketchum
+			weight = 0;
+			break;
+		case 12 : //Solsvik
+			weight = 0.2;
+			break;
+		case 13 : //Rigg
+			weight = 0.1;
+			break;
+		default :
+			weight = 7;
 	}
+
 	return weight;
 }
 
 double fweight_select(int teacher){
 	double weight;
-	if(teacher == 1){
-		weight = 0.1;
+	
+	switch(teacher){
+		case 1 : //Baker
+			weight = 0.45;
+			break;
+		case 2 : //Sabatke
+			weight = 0.4;
+			break;
+		case 3 : //Bright
+			weight = 0.45;
+			break;
+		case 4 : //Ginorio
+			weight = 0.45;
+			break;
+		case 5 : //McCormack
+			weight = 0.4;
+			break;
+		case 6 : //Gabrielsen
+			weight = 0.4;
+			break;
+		case 7 : //Harrison
+			weight = 0.45;
+			break;
+		case 8 : //Williams
+			weight = 0.45;
+			break;
+		case 9 : //Hall
+			weight = 0.4;
+			break;
+		case 10 : //Vaughan
+			weight = 0.4;
+			break;
+		case 11 : //Ketchum
+			weight = 0;
+			break;
+		case 12 : //Solsvik
+			weight = 0.4;
+			break;
+		case 13 : //Rigg
+			weight = 0.45;
+			break;
+		default :
+			weight = 7;
 	}
+
 	return weight;
 }
 
 double rounding_select(int teacher){
 	double round;
-	if(teacher == 1){
-		round = 0.5;
+	
+	switch(teacher){
+		case 1 : //Baker
+			round = 0;
+			break;
+		case 2 : //Sabatke
+			round = 0;
+			break;
+		case 3 : //Bright
+			round = 0.5;
+			break;
+		case 4 : //Ginorio
+			round = 0.5;
+			break;
+		case 5 : //McCormack
+			round = 0.2;
+			break;
+		case 6 : //Gabrielsen
+			round = 0.5;
+			break;
+		case 7 : //Harrison
+			round = 0;
+			break;
+		case 8 : //Williams
+			round = 0;
+			break;
+		case 9 : //Hall
+			round = 0.5;
+			break;
+		case 10 : //Vaughan
+			round = 0.5;
+			break;
+		case 11 : //Ketchum
+			round = 0;
+			break;
+		case 12 : //Solsvik
+			round = 0.2;
+			break;
+		case 13 : //Rigg
+			round = 0;
+			break;
+		default :
+			round = 0;
 	}
 	return round;
 }
-if(teachers[i] == 1){
-			roundingFactor[i] = 0;
-			for(j = 0; j < 11; j++){
-				percentages[i][j] = percentagesRaw[j] - roundingFactor[i];
-			}
-			q1weight[i] = 0.45;
-			q2weight[i] = 0.45;
-			finalWeight[i] = 0.1;
-		} else if(teachers[i] == 2){
-			roundingFactor[i] = 0;
-			for(j = 0; j < 11; j++){
-				percentages[i][j] = percentagesRaw[j] - roundingFactor[i];
-			}
-			q1weight[i] = 0.4;
-			q2weight[i] = 0.4;
-			finalWeight[i] = 0.2;
-		} else if(teachers[i] == 3){
-			roundingFactor[i] = 0.5;
-			for(j = 0; j < 11; j++){
-				percentages[i][j] = percentagesRaw[j] - roundingFactor[i];
-			}
-			q1weight[i] = 45;
-			q2weight[i] = 45;
-			finalWeight[i] = 10;
-		} else if(teachers[i] == 4){
-			roundingFactor[i] = 0.5;
-			for(j = 0; j < 11; j++){
-				percentages[i][j] = percentagesRaw[j] - roundingFactor[i];
-			}
-			q1weight[i] = 0.45;
-			q2weight[i] = 0.45;
-			finalWeight[i] = 0.1;
-		} else if(teachers[i] == 5){
-			roundingFactor[i] = 0.2;
-			for(j = 0; j < 11; j++){
-				percentages[i][j] = percentagesRaw[j] - roundingFactor[i];
-			}
-			q1weight[i] = 0.4;
-			q2weight[i] = 0.4;
-			finalWeight[i] = 0.2;
-		} else if(teachers[i] == 6){
-			roundingFactor[i] = 0.5;
-			for(j = 0; j < 11; j++){
-				percentages[i][j] = percentagesRaw[j] - roundingFactor[i];
-			}
-			q1weight[i] = 0.4;
-			q2weight[i] = 0.4;
-			finalWeight[i] = 0.2;
-		} else if(teachers[i] == 7){
-			roundingFactor[i] = 0;
-			for(j = 0; j < 10; j++){
-				percentages[i][j] = percentagesRaw[j] - roundingFactor[i];
-			}
-			q1weight[i] = 0.45;
-			q2weight[i] = 0.45;
-			finalWeight[i] = 0.1;
-		} else if(teachers[i] == 8){
-			roundingFactor[i] = 0;
-			for(j = 0; j < 11; j++){
-				percentages[i][j] = percentagesRaw[j] - roundingFactor[i];
-			}
-			q1weight[i] = 0.45;
-			q2weight[i] = 0.45;
-			finalWeight[i] = 0.1;
-		}
+

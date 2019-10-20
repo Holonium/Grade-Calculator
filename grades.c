@@ -1,8 +1,80 @@
-//Thia version implements multiple files, support for 6 classes, a custom header, and an updated style.
+//This version implements multiple files, support for up to 8 classes, more teachers, a custom header, and an updated style.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "calc.h"
 
 int main(){
-	
+	double version = 8.01;
+	int periods;
+	double percentagesRaw[] = {93,90,87,83,80,77,73,70,67,63,60};
+	char grades[] = {'A','A','B','B','B','C','C','C','D','D','D'};
+	char symbol[] = {'\0','-','+','\0','-','+','\0','-','+','\0','-'};
+
+	printf("Welcome to v%.2f of the grade calculator.\n",version);
+	printf("Please enter the number of periods that you wish to calculate grades for (1-8):");
+	scanf("%d", &periods);
+
+	int teachers[periods];
+	double q1grades[periods];
+	double q2grades[periods];
+	double q1weights[periods];
+	double q2weights[periods];
+	double fweights[periods];
+	double rounding[periods];
+	double percentages[periods][11];
+	double results[periods][11];
+
+	for(int i = 0; i < periods; i++){
+		char *teacher_list = "1) Mrs. Baker\n2) Mr. Sabatke\n3) Ms. Bright\n4) Mr. Ginorio\n5) Mr. McCormack\n6) Mr. Gabrielsen\n7) Mr. Harrison\n8) Mr. Williams\n9) Mr. Hall\n10) Mrs. Vaughan\n11) Mrs. Ketchum\n12) Ms. Solsvik\n13) Mr. Rigg\nPlease enter the number of the teacher for period ";
+		int period = i + 1;
+		printf("%s%i: ",teacher_list,period);
+		scanf("%d", &teachers[i]);
+		q1weights[i] = q1weight_select(teachers[i]);
+		q2weights[i] = q2weight_select(teachers[i]);
+		fweights[i] = fweight_select(teachers[i]);
+		rounding[i] = rounding_select(teachers[i]);
+
+		
+		char *grade1 = "What is your grade for the ";
+		char *grade2 = " quarter of this semester? ";
+
+		printf("%sfirst%s", grade1, grade2);
+		scanf("%lf", &q1grades[i]);
+		printf("%ssecond%s", grade1, grade2);
+		scanf("%lf", &q2grades[i]);
+	}
+	for(int i = 0; i < periods; i++){
+		for(int j = 0; j < 11; j++){
+			percentages[i][j] = roundCalc(percentagesRaw[j], rounding[i]);
+			results[i][j] = finalCalc(q1grades[i], q2grades[i], q1weights[i], q2weights[i], fweights[i], percentages[i][j]);
+		}
+	}
+	for(int i = 0; i < periods; i++){
+		
+		char *guaranteed1 = "You are guaranteed to get at least an ";
+		char *guaranteed2 = "You are guaranteed to get at least a ";
+		char *guaranteed3 = " for the semester!";
+
+		char *out1 = "You need at least a ";
+		char *out2 = "%% to get a ";
+		char *out3 = " for this semester.";
+		
+		int k = i + 1;
+
+		for(int j = 0; j < 11; j++){
+			if(results[i][j] <= 0){
+				if(j <= 1){
+					printf("Period %d: %s%c%c%s\n",k,guaranteed1,grades[j],symbol[j],guaranteed3);
+				}
+				if(j > 1){
+					printf("Period %d: %s%c%c%s\n",k,guaranteed2,grades[j],symbol[j],guaranteed3);
+				}
+				j = 11;
+			} else {
+				printf("Period %d: %s%.2f%s%c%c%s\n",k,out1,results[i][j],out2,grades[j],symbol[j],out3);
+			}
+		}
+	}
+	return 0;
+}
