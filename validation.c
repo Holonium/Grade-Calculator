@@ -4,4 +4,9 @@
 #include <string.h>
 #include "calc.h"
 
+int verify_classes(char *input){
+	
+}
 
+int verify_teacher(char *input);
+int verify_grades(char *input);

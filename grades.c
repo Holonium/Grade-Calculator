@@ -11,9 +11,12 @@ int main(){
 	char grades[] = {'A','A','B','B','B','C','C','C','D','D','D'};
 	char symbol[] = {'\0','-','+','\0','-','+','\0','-','+','\0','-'};
 
+	char input[10];
+
 	printf("Welcome to v%.2f of the grade calculator.\n",version);
 	printf("Please enter the number of periods that you wish to calculate grades for (1-8):");
-	scanf("%d", &periods);
+	//scanf("%d", &periods);
+	fgets(input, 10, stdin);
 
 	int teachers[periods];
 	double q1grades[periods];
@@ -29,7 +32,8 @@ int main(){
 		char *teacher_list = "1) Mrs. Baker\n2) Mr. Sabatke\n3) Ms. Bright\n4) Mr. Ginorio\n5) Mr. McCormack\n6) Mr. Gabrielsen\n7) Mr. Harrison\n8) Mr. Williams\n9) Mr. Hall\n10) Mrs. Vaughan\n11) Mrs. Ketchum\n12) Ms. Solsvik\n13) Mr. Rigg\nPlease enter the number of the teacher for period ";
 		int period = i + 1;
 		printf("%s%i: ",teacher_list,period);
-		scanf("%d", &teachers[i]);
+		//scanf("%d", &teachers[i]);
+		fgets(input, 10, stdin);
 		q1weights[i] = q1weight_select(teachers[i]);
 		q2weights[i] = q2weight_select(teachers[i]);
 		fweights[i] = fweight_select(teachers[i]);
@@ -40,9 +44,11 @@ int main(){
 		char *grade2 = " quarter of this semester? ";
 
 		printf("%sfirst%s", grade1, grade2);
-		scanf("%lf", &q1grades[i]);
+		//scanf("%lf", &q1grades[i]);
+		fgets(input, 10, stdin);
 		printf("%ssecond%s", grade1, grade2);
-		scanf("%lf", &q2grades[i]);
+		//scanf("%lf", &q2grades[i]);
+		fgets(input, 10, stdin);
 	}
 	for(int i = 0; i < periods; i++){
 		for(int j = 0; j < 11; j++){
