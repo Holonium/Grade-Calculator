@@ -11,9 +11,21 @@ int main(){
 	char grades[] = {'A','A','B','B','B','C','C','C','D','D','D'};
 	char symbol[] = {'\0','-','+','\0','-','+','\0','-','+','\0','-'};
 
+	char input[10];
+	
+	int isValid;
+
 	printf("Welcome to v%.2f of the grade calculator.\n",version);
-	printf("Please enter the number of periods that you wish to calculate grades for (1-8):");
-	scanf("%d", &periods);
+	ERR1: printf("Please enter the number of periods that you wish to calculate grades for (1-8):");
+	//scanf("%d", &periods);
+	fgets(input, 10, stdin);
+	isValid = verify_classes(input);
+	if(isValid != 0){
+		printf("Enter a valid number of periods! ");
+		goto ERR1;
+	} else {
+		periods = atoi(input);
+	}
 
 	int teachers[periods];
 	double q1grades[periods];
@@ -28,8 +40,16 @@ int main(){
 	for(int i = 0; i < periods; i++){
 		char *teacher_list = "1) Mrs. Baker\n2) Mr. Sabatke\n3) Ms. Bright\n4) Mr. Ginorio\n5) Mr. McCormack\n6) Mr. Gabrielsen\n7) Mr. Harrison\n8) Mr. Williams\n9) Mr. Hall\n10) Mrs. Vaughan\n11) Mrs. Ketchum\n12) Ms. Solsvik\n13) Mr. Rigg\nPlease enter the number of the teacher for period ";
 		int period = i + 1;
-		printf("%s%i: ",teacher_list,period);
-		scanf("%d", &teachers[i]);
+		ERR2: printf("%s%i: ",teacher_list,period);
+		//scanf("%d", &teachers[i]);
+		fgets(input, 10, stdin);
+		isValid = verify_teacher(input);
+		if(isValid != 0){
+			printf("Enter a valid teacher! ");
+			goto ERR2;
+		} else {
+			teachers[i] = atoi(input);
+		}
 		q1weights[i] = q1weight_select(teachers[i]);
 		q2weights[i] = q2weight_select(teachers[i]);
 		fweights[i] = fweight_select(teachers[i]);
@@ -38,11 +58,27 @@ int main(){
 		
 		char *grade1 = "What is your grade for the ";
 		char *grade2 = " quarter of this semester? ";
-
-		printf("%sfirst%s", grade1, grade2);
-		scanf("%lf", &q1grades[i]);
-		printf("%ssecond%s", grade1, grade2);
-		scanf("%lf", &q2grades[i]);
+		
+		ERR3: printf("%sfirst%s", grade1, grade2);
+		//scanf("%lf", &q1grades[i]);
+		fgets(input, 10, stdin);
+		isValid = verify_grades(input);
+		if(isValid != 0){
+			printf("Enter a valid grade! ");
+			goto ERR3;
+		} else {
+			q1grades[i] = atof(input);
+		}
+		ERR4: printf("%ssecond%s", grade1, grade2);
+		//scanf("%lf", &q2grades[i]);
+		fgets(input, 10, stdin);
+		isValid = verify_grades(input);
+		if(isValid != 0){
+			printf("Enter a valid grade! ");
+			goto ERR4;
+		} else {
+			q2grades[i] = atof(input);
+		}
 	}
 	for(int i = 0; i < periods; i++){
 		for(int j = 0; j < 11; j++){
