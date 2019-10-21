@@ -54,7 +54,7 @@ int main(){
 		q2weights[i] = q2weight_select(teachers[i]);
 		fweights[i] = fweight_select(teachers[i]);
 		rounding[i] = rounding_select(teachers[i]);
-
+		printf("q1weights: %d q2weights: %d fweights: %d rounding: %d\n", q1weights[i], q2weights[i], fweights[i], rounding[i]);
 		
 		char *grade1 = "What is your grade for the ";
 		char *grade2 = " quarter of this semester? ";
@@ -69,6 +69,7 @@ int main(){
 		} else {
 			q1grades[i] = atof(input);
 		}
+		printf("q1grades: %d\n", q1grades[i]);
 		ERR4: printf("%ssecond%s", grade1, grade2);
 		//scanf("%lf", &q2grades[i]);
 		fgets(input, 10, stdin);
@@ -79,6 +80,7 @@ int main(){
 		} else {
 			q2grades[i] = atof(input);
 		}
+		printf("q2grades: %d\n", q2grades[i]);
 	}
 	for(int i = 0; i < periods; i++){
 		for(int j = 0; j < 11; j++){
