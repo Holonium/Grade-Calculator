@@ -4,10 +4,9 @@
 #include <string.h>
 #include "calc.h"
 
-double q1weight_select(int teacher){
-	double weight;
+void q1weight_select(int teacher, double *weight){
 
-	switch(teacher){
+	/*switch(teacher){
 		case 1 : //Baker
 			weight = 0.45;
 			break;
@@ -49,9 +48,21 @@ double q1weight_select(int teacher){
 			break;
 		default :
 			weight = 7;
-	}
+	}*/
 
-	return weight;
+	if(teacher == 1 || teacher == 3 || teacher == 4 || teacher == 7 || teacher == 8 || teacher == 13){
+		//return 0.45;
+		double temp = 0.45;
+		weight = temp;
+		printf("%d\n", weight);
+	} else if(teacher == 2 || teacher == 5 || teacher == 6 || teacher == 9 || teacher == 10 || teacher == 12){
+		//return 0.4;
+	} else if(teacher == 11){
+		//return 0;
+	}	
+
+	printf("%d %d\n",teacher,weight);
+	//return weight;
 }
 
 double q2weight_select(int teacher){
@@ -101,6 +112,7 @@ double q2weight_select(int teacher){
 			weight = 7;
 	}
 
+	printf("%d\n",weight);
 	return weight;
 }
 
@@ -151,6 +163,7 @@ double fweight_select(int teacher){
 			weight = 7;
 	}
 
+	printf("%d\n",weight);
 	return weight;
 }
 
@@ -200,6 +213,8 @@ double rounding_select(int teacher){
 		default :
 			round = 0;
 	}
+
+	printf("%d\n",round);
 	return round;
 }
 

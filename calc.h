@@ -1,7 +1,7 @@
 #ifndef CALC_H_
 #define CALC_H_
 
-double q1weight_select(int teacher);
+void q1weight_select(int teacher, double *weight);
 double q2weight_select(int teacher);
 double fweight_select(int teacher);
 double rounding_select(int teacher);

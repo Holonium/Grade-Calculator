@@ -27,15 +27,15 @@ int main(){
 		periods = atoi(input);
 	}
 
-	int teachers[periods];
-	double q1grades[periods];
-	double q2grades[periods];
-	double q1weights[periods];
-	double q2weights[periods];
-	double fweights[periods];
-	double rounding[periods];
-	double percentages[periods][11];
-	double results[periods][11];
+	int teachers[8];
+	double q1grades[8];
+	double q2grades[8];
+	double q1weights[8];
+	double q2weights[8];
+	double fweights[8];
+	double rounding[8];
+	double percentages[8][11];
+	double results[8][11];
 
 	for(int i = 0; i < periods; i++){
 		char *teacher_list = "1) Mrs. Baker\n2) Mr. Sabatke\n3) Ms. Bright\n4) Mr. Ginorio\n5) Mr. McCormack\n6) Mr. Gabrielsen\n7) Mr. Harrison\n8) Mr. Williams\n9) Mr. Hall\n10) Mrs. Vaughan\n11) Mrs. Ketchum\n12) Ms. Solsvik\n13) Mr. Rigg\nPlease enter the number of the teacher for period ";
@@ -49,11 +49,17 @@ int main(){
 			goto ERR2;
 		} else {
 			teachers[i] = atoi(input);
+			printf("%s %d\n",input,teachers[i]);
 		}
-		q1weights[i] = q1weight_select(teachers[i]);
-		q2weights[i] = q2weight_select(teachers[i]);
-		fweights[i] = fweight_select(teachers[i]);
-		rounding[i] = rounding_select(teachers[i]);
+		int temp = teachers[i];
+		printf("teacher: %d\n", temp);
+		double *tempweight;
+		//q1weights[i] = q1weight_select(temp, &tempweight);
+		q1weight_select(temp, tempweight);
+		q1weights[i] = *tempweight;
+		q2weights[i] = q2weight_select(temp);
+		fweights[i] = fweight_select(temp);
+		rounding[i] = rounding_select(temp);
 		printf("q1weights: %d q2weights: %d fweights: %d rounding: %d\n", q1weights[i], q2weights[i], fweights[i], rounding[i]);
 		
 		char *grade1 = "What is your grade for the ";
