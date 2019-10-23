@@ -56,18 +56,13 @@ int main(){
 		q1weight_select(temp);
 		q1weights[i] = *q1temp;
 		printf("Returned: %f, Transferred: %f\n", *q1temp, q1weights[i]); //Valid
-		
 		q2weight_select(temp);
-
 		q2weights[i] = *q2temp;
-
 		fweight_select(temp);
-
 		fweights[i] = *fwtemp;
-
 		rounding_select(temp);
-		printf("Rounding: %f\n",*roundtemp);
-		rounding[i] = *roundtemp;
+		printf("Rounding: %f\n",*roundtemp); //Valid
+		rounding[i] = *roundtemp; //Something is wrong here
 		printf("q1weights: %f q2weights: %f fweights: %f rounding: %f\n", q1weights[i], q2weights[i], fweights[i], rounding[i]); //All values valid except rounding.
 		
 		char *grade1 = "What is your grade for the ";
