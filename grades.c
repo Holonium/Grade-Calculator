@@ -49,18 +49,31 @@ int main(){
 			goto ERR2;
 		} else {
 			teachers[i] = atoi(input);
-			printf("%s %d\n",input,teachers[i]);
+			//printf("%s %d\n",input,teachers[i]); Valid
 		}
 		int temp = teachers[i];
-		printf("teacher: %d\n", temp);
-		double *tempweight;
+		//printf("teacher: %d\n", temp); Valid
+		double tempweight;
+		//tempweight = malloc(sizeof(double));
 		//q1weights[i] = q1weight_select(temp, &tempweight);
 		q1weight_select(temp, tempweight);
-		q1weights[i] = *tempweight;
-		q2weights[i] = q2weight_select(temp);
-		fweights[i] = fweight_select(temp);
-		rounding[i] = rounding_select(temp);
-		printf("q1weights: %d q2weights: %d fweights: %d rounding: %d\n", q1weights[i], q2weights[i], fweights[i], rounding[i]);
+		q1weights[i] = *temp2;
+		printf("Returned: %f, Transferred: %f\n", *temp2, tempweight); //Invalid, Transferred value is incorrect.
+		q1weights[i] = tempweight;
+		//q2weights[i] = q2weight_select(temp);
+		q2weight_select(temp, tempweight);
+		tempweight = *temp2;
+		q2weights[i] = tempweight;
+		//fweights[i] = fweight_select(temp);
+		fweight_select(temp, tempweight);
+		tempweight = *temp2;
+		fweights[i] = tempweight;
+		double tempround;
+		//rounding[i] = rounding_select(temp);
+		rounding_select(temp, tempround);
+		tempround = *temp2;
+		rounding[i] = tempround;
+		printf("q1weights: %d q2weights: %d fweights: %d rounding: %d\n", q1weights[i], q2weights[i], fweights[i], rounding[i]); //All values invalid
 		
 		char *grade1 = "What is your grade for the ";
 		char *grade2 = " quarter of this semester? ";
