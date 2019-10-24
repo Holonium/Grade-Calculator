@@ -61,9 +61,9 @@ int main(){
 		fweight_select(temp);
 		fweights[i] = *fwtemp;
 		rounding_select(temp);
+		rounding[i] = *roundtemp; //Valid
 		printf("Rounding: %f\n",*roundtemp); //Valid
-		rounding[i] = *roundtemp; //Something is wrong here
-		printf("q1weights: %f q2weights: %f fweights: %f rounding: %f\n", q1weights[i], q2weights[i], fweights[i], rounding[i]); //All values valid except rounding.
+		printf("q1weights: %f q2weights: %f fweights: %f rounding: %f\n", q1weights[i], q2weights[i], fweights[i], rounding[i]); //Valid
 		
 		char *grade1 = "What is your grade for the ";
 		char *grade2 = " quarter of this semester? ";

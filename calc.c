@@ -5,6 +5,7 @@
 
 double finalCalc(double q1grade, double q2grade, double q1weight, double q2weight, double fweight, double target){
 	double fgrade = (target - ((q1grade * q1weight) + (q2grade * q2weight))) / fweight;
+	printf("calc.c: fgrade: %f\n",fgrade);
 	return fgrade;
 }
 
