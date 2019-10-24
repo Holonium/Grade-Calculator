@@ -13,4 +13,4 @@ validation.o : validation.c calc.h
 	gcc -fsanitize=address,undefined -g -m64 -c -o validation.o validation.c
 
 clean :
-	rm grades grades.o teachers.o calc.o validation.o
+	rm grades

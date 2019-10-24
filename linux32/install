@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cp ../src/*.c .
+cp ../src/*.h .
+
+make
+
+rm *.c *.h *.o
