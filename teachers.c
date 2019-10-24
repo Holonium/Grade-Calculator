@@ -4,202 +4,55 @@
 #include <string.h>
 #include "calc.h"
 
-double q1weight_select(int teacher){
-	double weight;
-
-	switch(teacher){
-		case 1 : //Baker
-			weight = 0.45;
-			break;
-		case 2 : //Sabatke
-			weight = 0.4;
-			break;
-		case 3 : //Bright
-			weight = 0.45;
-			break;
-		case 4 : //Ginorio
-			weight = 0.45;
-			break;
-		case 5 : //McCormack
-			weight = 0.4;
-			break;
-		case 6 : //Gabrielsen
-			weight = 0.4;
-			break;
-		case 7 : //Harrison
-			weight = 0.45;
-			break;
-		case 8 : //Williams
-			weight = 0.45;
-			break;
-		case 9 : //Hall
-			weight = 0.4;
-			break;
-		case 10 : //Vaughan
-			weight = 0.4;
-			break;
-		case 11 : //Ketchum
-			weight = 0;
-			break;
-		case 12 : //Solsvik
-			weight = 0.4;
-			break;
-		case 13 : //Rigg
-			weight = 0.45;
-			break;
-		default :
-			weight = 7;
-	}
-
-	return weight;
+void q1weight_select(int teacher){
+	if(teacher == 1 || teacher == 3 || teacher == 4 || teacher == 7 || teacher == 8 || teacher == 13){
+		double temp = 0.45;
+		q1temp = &temp;
+	} else if(teacher == 2 || teacher == 5 || teacher == 6 || teacher == 9 || teacher == 10 || teacher == 12){
+		double temp = 0.4;
+		q1temp = &temp;
+	} else if(teacher == 11){
+		double temp = 0;
+		q1temp = &temp;
+	}	
 }
 
-double q2weight_select(int teacher){
-	double weight;
-
-	switch(teacher){
-		case 1 : //Baker
-			weight = 0.1;
-			break;
-		case 2 : //Sabatke
-			weight = 0.2;
-			break;
-		case 3 : //Bright
-			weight = 0.1;
-			break;
-		case 4 : //Ginorio
-			weight = 0.1;
-			break;
-		case 5 : //McCormack
-			weight = 0.2;
-			break;
-		case 6 : //Gabrielsen
-			weight = 0.2;
-			break;
-		case 7 : //Harrison
-			weight = 0.1;
-			break;
-		case 8 : //Williams
-			weight = 0.1;
-			break;
-		case 9 : //Hall
-			weight = 0.2;
-			break;
-		case 10 : //Vaughan
-			weight = 0.2;
-			break;
-		case 11 : //Ketchum
-			weight = 0;
-			break;
-		case 12 : //Solsvik
-			weight = 0.2;
-			break;
-		case 13 : //Rigg
-			weight = 0.1;
-			break;
-		default :
-			weight = 7;
+void q2weight_select(int teacher){
+	if(teacher == 1 || teacher == 3 || teacher == 4 || teacher == 7 || teacher == 8 || teacher == 13){
+		double temp = 0.45;
+		q2temp = &temp;
+	} else if(teacher == 2 || teacher == 5 || teacher == 6 || teacher == 9 || teacher == 10 || teacher == 12){
+		double temp = 0.4;
+		q2temp = &temp;
+	} else if(teacher == 11){
+		double temp = 1;
+		q2temp = &temp;
 	}
-
-	return weight;
 }
 
-double fweight_select(int teacher){
-	double weight;
-	
-	switch(teacher){
-		case 1 : //Baker
-			weight = 0.45;
-			break;
-		case 2 : //Sabatke
-			weight = 0.4;
-			break;
-		case 3 : //Bright
-			weight = 0.45;
-			break;
-		case 4 : //Ginorio
-			weight = 0.45;
-			break;
-		case 5 : //McCormack
-			weight = 0.4;
-			break;
-		case 6 : //Gabrielsen
-			weight = 0.4;
-			break;
-		case 7 : //Harrison
-			weight = 0.45;
-			break;
-		case 8 : //Williams
-			weight = 0.45;
-			break;
-		case 9 : //Hall
-			weight = 0.4;
-			break;
-		case 10 : //Vaughan
-			weight = 0.4;
-			break;
-		case 11 : //Ketchum
-			weight = 0;
-			break;
-		case 12 : //Solsvik
-			weight = 0.4;
-			break;
-		case 13 : //Rigg
-			weight = 0.45;
-			break;
-		default :
-			weight = 7;
+void fweight_select(int teacher){
+	if(teacher == 1 || teacher == 3 || teacher == 4 || teacher == 7 || teacher == 8 || teacher == 13){
+		double temp = 0.1;
+		fwtemp = &temp;
+	} else if(teacher == 2 || teacher == 5 || teacher == 6 || teacher == 9 || teacher == 10 || teacher == 12){
+		double temp = 0.2;
+		fwtemp = &temp;
+	} else if(teacher == 11){
+		double temp = 0;
+		fwtemp = &temp;
 	}
-
-	return weight;
 }
 
-double rounding_select(int teacher){
-	double round;
-	
-	switch(teacher){
-		case 1 : //Baker
-			round = 0;
-			break;
-		case 2 : //Sabatke
-			round = 0;
-			break;
-		case 3 : //Bright
-			round = 0.5;
-			break;
-		case 4 : //Ginorio
-			round = 0.5;
-			break;
-		case 5 : //McCormack
-			round = 0.2;
-			break;
-		case 6 : //Gabrielsen
-			round = 0.5;
-			break;
-		case 7 : //Harrison
-			round = 0;
-			break;
-		case 8 : //Williams
-			round = 0;
-			break;
-		case 9 : //Hall
-			round = 0.5;
-			break;
-		case 10 : //Vaughan
-			round = 0.5;
-			break;
-		case 11 : //Ketchum
-			round = 0;
-			break;
-		case 12 : //Solsvik
-			round = 0.2;
-			break;
-		case 13 : //Rigg
-			round = 0;
-			break;
-		default :
-			round = 0;
+void rounding_select(int teacher){
+	if(teacher == 1 || teacher == 2 || teacher == 7 || teacher == 8 || teacher == 11 || teacher == 13){
+		double temp = 0;
+		roundtemp = &temp;
+	} else if(teacher == 5 || teacher == 12){
+		double temp = 0.2;
+		roundtemp = &temp;
+	} else if(teacher == 3 || teacher == 4 || teacher == 6 || teacher == 9 || teacher == 10){
+		double temp = 0.5;
+		roundtemp = &temp;
 	}
-	return round;
 }
 
