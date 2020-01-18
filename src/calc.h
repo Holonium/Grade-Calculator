@@ -17,5 +17,6 @@ double roundCalc(double gradeRaw, double roundingFactor);
 int verify_classes(char *input);
 int verify_teacher(char *input);
 int verify_grades(char *input);
+int verify_constants(char *input);
 
 #endif
