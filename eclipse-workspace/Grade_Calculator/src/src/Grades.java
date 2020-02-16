@@ -3,13 +3,16 @@ package src;
 import java.util.Scanner;
 
 public class Grades {
+	
+	
 
 	public static void main(String[] args) {
-		double version = 9.00;
+		final String version = "9.0.0 a2";
+		final double[] rawPercentages = {93,90,87,83,80,77,73,70,67,63,60};
+		final char[] grades = {'A','A','B','B','B','C','C','C','D','D','D'};
+		final char[] symbol = {'\0','-','+','\0','-','+','\0','-','+','\0','-'};
+		
 		int periods = 0;
-		double[] rawPercentages = {93,90,87,83,80,77,73,70,67,63,60};
-		char[] grades = {'A','A','B','B','B','C','C','C','D','D','D'};
-		char[] symbol = {'\0','-','+','\0','-','+','\0','-','+','\0','-'};
 		boolean isValid = false;
 		Scanner sc = new Scanner(System.in);
 
@@ -29,11 +32,7 @@ public class Grades {
 		int[] teachers = new int[8];
 		double[] q1grades = new double[8];
 		double[] q2grades = new double[8];
-		double[] q1weights = new double[8];
-		double[] q2weights = new double[8];
-		double[] fweights = new double[8];
-		double[] rounding = new double[8];
-		double[][] percentages = new double[8][11];
+		double[][] teacherConstants = new double[4][8]; //0=q1,1=q2,2=fw,3=round
 		double[][] results = new double[8][11];
 		
 		for(int i = 0; i < periods; i++) {
@@ -54,8 +53,8 @@ public class Grades {
 					isValid = false;
 					while(isValid == false) {
 						System.out.print("Please enter the weight of the first quarter as a decimal: ");
-						q1weights[i] = sc.nextDouble();
-						if(q1weights[i] < 0 || q1weights[i] > 1) {
+						teacherConstants[0][i] = sc.nextDouble();
+						if(teacherConstants[0][i] < 0 || teacherConstants[0][i] > 1) {
 							System.out.print("Enter a valid weight! ");
 						}else {
 							isValid = true;
@@ -64,8 +63,8 @@ public class Grades {
 					isValid = false;
 					while(isValid == false) {
 						System.out.print("Please enter the weight of the second quarter as a decimal: ");
-						q2weights[i] = sc.nextDouble();
-						if(q2weights[i] < 0 || q2weights[i] > 1) {
+						teacherConstants[1][i] = sc.nextDouble();
+						if(teacherConstants[1][i] < 0 || teacherConstants[1][i] > 1) {
 							System.out.print("Enter a valid weight! ");
 						}else {
 							isValid = true;
@@ -74,8 +73,8 @@ public class Grades {
 					isValid = false;
 					while(isValid == false) {
 						System.out.print("Please enter the weight of the final as a decimal: ");
-						fweights[i] = sc.nextDouble();
-						if(fweights[i] < 0 || fweights[i] > 1) {
+						teacherConstants[2][i] = sc.nextDouble();
+						if(teacherConstants[2][i] < 0 || teacherConstants[2][i] > 1) {
 							System.out.print("Enter a valid weight! ");
 						}else {
 							isValid = true;
@@ -84,8 +83,8 @@ public class Grades {
 					isValid = false;
 					while(isValid == false) {
 						System.out.print("Please enter the point at which the teacher rounds: ");
-						rounding[i] = sc.nextDouble();
-						if(rounding[i] < 0 || rounding[i] > 1) {
+						teacherConstants[3][i] = sc.nextDouble();
+						if(teacherConstants[3][i] < 0 || teacherConstants[3][i] > 1) {
 							System.out.print("Enter a valid weight! ");
 						}else {
 							isValid = true;
@@ -116,28 +115,11 @@ public class Grades {
 		}
 		for(int i = 0; i < periods; i++) {
 			for(int j = 0; j < 11; j++) {
-				if(teachers[i] == 1 || teachers[i] == 3 || teachers[i] == 4 || teachers[i] == 7 || teachers[i] == 8 || teachers[i] == 13) {
-					q1weights[i] = 0.45;
-					q2weights[i] = 0.45;
-					fweights[i] = 0.1;
-				}else if(teachers[i] == 2 || teachers[i] == 5 || teachers[i] == 6 || teachers[i] == 9 || teachers[i] == 10 || teachers[i] == 12) {
-					q1weights[i] = 0.4;
-					q2weights[i] = 0.4;
-					fweights[i] = 0.2;
-				}else if(teachers[i] == 11) {
-					q1weights[i] = 0;
-					q2weights[i] = 1;
-					fweights[i] = 0;
-				}
-				if(teachers[i] == 1 || teachers[i] == 2 || teachers[i] == 7 || teachers[i] == 8 || teachers[i] == 11 || teachers[i] == 13) {
-					rounding[i] = 0;
-				}else if(teachers[i] == 5 || teachers[i] == 12) {
-					rounding[i] = 0.2;
-				}else if(teachers[i] == 2 || teachers[i] == 4 || teachers[i] == 6 || teachers[i] == 9 || teachers[i] == 10) {
-					rounding[i] = 0.5;
-				}
-				percentages[i][j] = rawPercentages[j] - rounding[i];
-				results[i][j] = (percentages[i][j] - ((q1grades[i] * q1weights[i])+(q2grades[i] * q2weights[i]))) / fweights[i];
+				teacherConstants[0][i] = q1weight(teachers[i]);
+				teacherConstants[1][i] = q2weight(teachers[i]);
+				teacherConstants[2][i] = fweight(teachers[i]);
+				teacherConstants[3][i] = rounding(teachers[i]);
+				results[i][j] = calculate(teacherConstants[0][i], teacherConstants[1][i], teacherConstants[2][i], rawPercentages[j], teacherConstants[3][i], q1grades[i], q2grades[i]);
 			}
 		}
 		for(int i = 0; i < periods; i++) {
@@ -166,6 +148,55 @@ public class Grades {
 			}
 		}
 		sc.close();
+	}
+	public static double calculate(double weight1, double weight2, double fweight, double raw, double round, double grade1, double grade2) {
+		double percentages = raw - round;
+		double result = (percentages - ((grade1 * weight1)+(grade2 * weight2))) / fweight;
+		return result;
+	}
+	public static double q1weight(int teachers) {
+		double q1weight = 0;
+		if(teachers == 1 || teachers == 3 || teachers == 4 || teachers == 7 || teachers == 8 || teachers == 13) {
+			q1weight = 0.45;
+		}else if(teachers == 2 || teachers == 5 || teachers == 6 || teachers == 9 || teachers == 10 || teachers == 12) {
+			q1weight = 0.4;
+		}else if(teachers == 11) {
+			q1weight = 0;
+		}
+		return q1weight;
+	}
+	public static double q2weight(int teachers) {
+		double q2weight = 0;
+		if(teachers == 1 || teachers == 3 || teachers == 4 || teachers == 7 || teachers == 8 || teachers == 13) {
+			q2weight = 0.45;
+		}else if(teachers == 2 || teachers == 5 || teachers == 6 || teachers == 9 || teachers == 10 || teachers == 12) {
+			q2weight = 0.4;
+		}else if(teachers == 11) {
+			q2weight = 1;
+		}
+		return q2weight;
+	}
+	public static double fweight(int teachers) {
+		double fweight = 0;
+		if(teachers == 1 || teachers == 3 || teachers == 4 || teachers == 7 || teachers == 8 || teachers == 13) {
+			fweight = 0.1;
+		}else if(teachers == 2 || teachers == 5 || teachers == 6 || teachers == 9 || teachers == 10 || teachers == 12) {
+			fweight = 0.2;
+		}else if(teachers == 11) {
+			fweight = 0;
+		}
+		return fweight;
+	}
+	public static double rounding(int teachers) {
+		double round = 0;
+		if(teachers == 1 || teachers == 2 || teachers == 7 || teachers == 8 || teachers == 11 || teachers == 13) {
+			round = 0;
+		}else if(teachers == 5 || teachers == 12) {
+			round = 0.2;
+		}else if(teachers == 2 || teachers == 4 || teachers == 6 || teachers == 9 || teachers == 10) {
+			round = 0.5;
+		}
+		return round;
 	}
 
 }
