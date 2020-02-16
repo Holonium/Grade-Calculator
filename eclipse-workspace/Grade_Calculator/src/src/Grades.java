@@ -155,11 +155,13 @@ public class Grades {
 				if(results[i][j] <= 0) {
 					if(j <= 1) {
 						System.out.println("Period " + k + ": " + guaranteed1 + grades[j] + symbol[j] + guaranteed3);
-					}else if(j > 1) {
-						System.out.println("Period " + k + ": " + guaranteed2 + grades[j] + symbol[j] + guaranteed3);
+						j = 11;
 					}else {
-						System.out.println("Period " + k + ": " + out1 + results[i][j] + "%" + out2 + grades[j] + symbol[j] + out3);
+						System.out.println("Period " + k + ": " + guaranteed2 + grades[j] + symbol[j] + guaranteed3);
+						j = 11;
 					}
+				}else {
+					System.out.println("Period " + k + ": " + out1 + results[i][j] + "%" + out2 + grades[j] + symbol[j] + out3);
 				}
 			}
 		}
