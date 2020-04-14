@@ -82,15 +82,15 @@ double hsGPA_weight_semester(double gradePointsSum, double totalCredits){
 }
 
 double hsGPA_unweight_full(double gradePoints1, double credits1, double gradePoints2, double credits2, double gradePoints3, double credits3, double gradePoints4, double credits4){
-	double GradePointsSum = gradePoints1 + gradePoints2 + gradePoints3 + gradePoints4;
+	double gradePointsSum = gradePoints1 + gradePoints2 + gradePoints3 + gradePoints4;
 	double totalCredits = credits1 + credits2 + credits3 + credits4;
-	double GPA = gradePointsSum / total Credits;
+	double GPA = gradePointsSum / totalCredits;
 	return GPA;
 }
 
 double hsGPA_weight_full(double gradePoints1, double credits1, double gradePoints2, double credits2, double gradePoints3, double credits3, double gradePoints4, double credits4){
-	double GradePointsSum = gradePoints1 + gradePoints2 + gradePoints3 + gradePoints4;
+	double gradePointsSum = gradePoints1 + gradePoints2 + gradePoints3 + gradePoints4;
 	double totalCredits = credits1 + credits2 + credits3 + credits4;
-	double GPA = gradePointsSum / total Credits;
+	double GPA = gradePointsSum / totalCredits;
 	return GPA;
 }
