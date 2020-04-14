@@ -4,7 +4,23 @@
 
 double hsGPA_unweight_class(double qgrade, double credits){
 	double unmod;
-	if(qgrade >= 93){
+	double gpa = 4;
+	for(int i = 0; i < 11; i++){
+		int j = i + 1;
+		if(i == 0){
+			if(qgrade >= percentagesRaw[i]){
+				unmod = gpa;
+				i = 11;
+			}
+		}else if(i > 0){
+			if(qgrade >= percentagesRaw[j] && qgrade < percentagesRaw[i]){
+				unmod = gpa - (0.33 * i);
+				i = 11;
+			}
+		}
+	}
+	
+	/*if(qgrade >= 93){
 		unmod = 4.00;
 	}else if(qgrade >= 90 && qgrade < 93){
 		unmod = 3.67;
@@ -28,38 +44,29 @@ double hsGPA_unweight_class(double qgrade, double credits){
 		unmod = 0.67;
 	}else if(qgrade < 60){
 		unmod = 0.00;
-	}
+	}*/
 	double gradePoints = unmod * credits;
 	return gradePoints;
 }
 
 double hsGPA_weight_class(double qgrade, int type, double credits){
 	double unmod;
-	if(qgrade >= 93){
-		unmod = 4.00;
-	}else if(qgrade >= 90 && qgrade < 93){
-		unmod = 3.67;
-	}else if(qgrade >= 87 && qgrade < 90){
-		unmod = 3.33;
-	}else if(qgrade >= 83 && qgrade < 87){
-		unmod = 3.00;
-	}else if(qgrade >= 80 && qgrade < 83){
-		unmod = 2.67;
-	}else if(qgrade >= 77 && qgrade < 80){
-		unmod = 2.33;
-	}else if(qgrade >= 73 && qgrade < 77){
-		unmod = 2.00;
-	}else if(qgrade >= 70 && qgrade < 73){
-		unmod = 1.67;
-	}else if(qgrade >= 67 && qgrade < 70){
-		unmod = 1.33;
-	}else if(qgrade >= 63 && qgrade < 67){
-		unmod = 1.00;
-	}else if(qgrade >= 60 && qgrade < 63){
-		unmod = 0.67;
-	}else if(qgrade < 60){
-		unmod = 0.00;
+	double gpa = 4;
+	for(int i = 0; i < 11; i++){
+		int j = i + 1;
+		if(i == 0){
+			if(qgrade >= percentagesRaw[i]){
+				unmod = gpa;
+				i = 11;
+			}
+		}else if(i > 0){
+			if(qgrade >= percentagesRaw[j] && qgrade < percentagesRaw[i]){
+				unmod = gpa - (0.33 * i);
+				i = 11;
+			}
+		}
 	}
+	
 	if(type == 0){
 		unmod = unmod + 0;
 	}else if(type == 1){

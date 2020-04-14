@@ -14,7 +14,7 @@ gpa.c: Handles GPA calculations. High School is complete.
 gpa.h: Defines GPA constants and functions
 grades.c: Handles I/O and calls other functions
 grades.h: Defines main constants
-hs.c: Handles high school calculations
+hs.c: Handles high school calculations?
 input.h: Passes input
 results.h: Passes calculated results
 teachers.c: Passes teacher constants

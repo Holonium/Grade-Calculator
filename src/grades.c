@@ -19,7 +19,7 @@ int main(){
 	printf("Welcome to %s of the grade calculator.\n",version);
 	ERR1: printf("Please enter the number of periods that you wish to calculate grades for (1-8):");
 	fgets(input, 10, stdin);
-	//isValid = verifyClasses(input);
+	isValid = verifyClasses(input);
 	if(isValid != 0){
 		printf("Enter a valid number of periods! ");
 		goto ERR1;
