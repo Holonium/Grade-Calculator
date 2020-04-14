@@ -1,4 +1,4 @@
 # Grade-Calculator
 A grade calculation program for students.  
 This program has been built to run on Windows and Linux.  
-The next major implemented feature will be a GUI of some kind.  
+The current redesign will implement GPA calculations, both weighted and unweighted. A changelog will be added.
