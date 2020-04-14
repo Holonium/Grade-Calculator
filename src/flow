@@ -1,1 +1,21 @@
-grades.c: needs to print version and perform I/O
+Old:
+calc.c: Calculated finals and rounding
+calc.h: Passed doubles as pointers
+grades.c: Handled I/O
+teachers.c: Handled teacher constants
+validation.c: Validated input
+
+New:
+calc.c: Calculation functions
+calc.h: Passes calculation variables and defines constants for calculation
+college.c: Handles college calculations
+functions.h: Links functions that require access by a large number of files
+gpa.c: Handles GPA calculations. High School is complete.
+gpa.h: Defines GPA constants and functions
+grades.c: Handles I/O and calls other functions
+grades.h: Defines main constants
+hs.c: Handles high school calculations
+input.h: Passes input
+results.h: Passes calculated results
+teachers.c: Passes teacher constants
+validation.c: Handles validation of input
