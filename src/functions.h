@@ -1,7 +1,10 @@
 #ifndef FUNCTIONS_H_
 #define FUNCTIONS_H_
 
-int verifyClasses(int periods);
+int verifyClasses(char *input);
+int verifyTeacher(char *input);
+int verifyGrades(char *input);
+int verifyConstants(char *input);
 
 double hsGPA_unweight_class(double qgrade, double credits);
 double hsGPA_weight_class(double qgrade, int type, double credits);
@@ -14,6 +17,7 @@ double *q1temp;
 double *q2temp;
 double *fwtemp;
 double *roundtemp;
+double *credits;
 
 void q1weight_select(int teacher);
 void q2weight_select(int teacher);

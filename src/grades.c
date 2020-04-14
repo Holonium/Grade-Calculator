@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "grades.h"
+#include "functions.h"
+#include "results.h"
 
 int main(){
 	char version[] = "v1.0.0a1";
