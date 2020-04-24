@@ -3,7 +3,7 @@
 #include <string.h>
 #include "functions.h"
 
-int verify_classes(char *input){
+int verifyClasses(char *input){
 	int verify = atoi(input);
 	if(verify == 0){
 		return 1;
@@ -13,7 +13,7 @@ int verify_classes(char *input){
 	return 0;
 }
 
-int verify_teachers(char *input){
+int verifyTeacher(char *input){
 	int verify = atoi(input);
 	if(verify == 0){
 		return 1;
@@ -25,15 +25,16 @@ int verify_teachers(char *input){
 	return 0;
 }
 
-int verify_grades(char *input){
+int verifyGrades(char *input){
 	double verify = atof(input);
-	if(verify <= 0){
+	if(verify == 0){
+		return 1;
+	} else if(verify < 0){
 		return 1;
 	}
 	return 0;
 }
-
-int verify_constants(char *input){
+int verifyConstants(char *input){
 	double verify = atof(input);
 	if(verify == 0){
 		return 0;
@@ -44,22 +45,11 @@ int verify_constants(char *input){
 	}
 	return 0;
 }
-
-int verify_credits(char *input){
-	double verify = atof(input);
-	if(verify <= 0){
-		return 1;
-	}
-	return 0;
-}
-
-int verify_final(char *input){
+int verifyCredits(char *input){
 	double verify = atof(input);
 	if(verify == 0){
-		return 1;
+		return 0;
 	} else if(verify < 0){
-		return 1;
-	} else if(verify > 1){
 		return 1;
 	}
 	return 0;

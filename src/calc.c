@@ -1,13 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "calc.h"
+#include "functions.h"
 
-double finalCalc(double q1grade, double q2grade, double q1weight, double q2weight, double fweight, double target){
-	double fgrade = (target - ((q1grade * q1weight) + (q2grade * q2weight))) / fweight;
-	return fgrade;
-}
+double final_calc(double q1grade, double q2grade, double q1weight, double q2weight, double fweight, double target);
 
-double roundCalc(double gradeRaw, double roundingFactor){
-	double grade = gradeRaw - roundingFactor;
-	return grade;
-}
+double final_calc_multiweight(double q1grade, double q2grade, double f1grade, double q1weight, double q2weight, double f1weight, double f2weight, double target);
+
+double round_calc(double gradeRaw, double roundingFactor);
