@@ -9,6 +9,8 @@ int verify_classes(char *input){
 		return 1;
 	} else if(verify < 1){
 		return 1;
+	} else if(verify > 8){
+		return 1;
 	}
 	return 0;
 }
