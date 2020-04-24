@@ -64,3 +64,13 @@ int verify_final(char *input){
 	}
 	return 0;
 }
+
+int verify_type(char *input){
+	double verify = atoi(input);
+	if(verify <= 0){
+		return 1;
+	} else if(verify > 3){
+		return 1;
+	}
+	return 0;
+}
