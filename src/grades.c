@@ -75,7 +75,7 @@ int main(){
 						if(temp == 1){
 							roundingPast[i][j][k] = 0;
 						} else {
-							roundingPast[i][j][k] = temp;
+							roundingPast[i][j][k] = 1 - temp;
 						}
 					}
 				} else {
@@ -143,6 +143,55 @@ int main(){
 				printf("Enter a valid teacher! ");
 				goto ERR10;
 			} else {
-				teachers[year][0][i] = atoi(input);
+				teachers[years][0][i] = atoi(input);
 			}
-			if(teachers[year][0][i] == 14){
+			if(teachers[years][0][i] == 14){
+				ERR11: printf("Please enter the point that the teacher rounds at, using 1 of they do not round: ");
+				fgets(input, 10, stdin);
+				isValid = verify_constants(input);
+				if(isValid != 0){
+					printf("Enter a valid rounding point! ");
+					goto ERR11;
+				} else {
+					double temp = atof(input);
+					if(temp == 1){
+						roundingPast[years][0][i] = 0;
+					} else {
+						roundingPast[years][0][i] = 1 - temp;
+					}
+				}
+			} else {
+				rounding_select(teachers[years][0][i]);
+				roundingPast[years][0][i] = *roundtemp;
+			}
+			ERR12: printf("%s%i of semester 1 of the current year: ", class_types, per);
+			fgets(input, 10, stdin);
+			isValid = verify_type(input);
+			if(isValid != 0){
+				printf("Enter a valid class type! ");
+				goto ERR12;
+			} else {
+				types[years][0][i] = atoi(input);
+			}
+			ERR13: printf("Please enter the number of credits the class was worth: ");
+			fgets(input, 10, stdin);
+			isValid = verify_credits(input);
+			if(isValid != 0){
+				printf("Enter a valid number of credits! ");
+				goto ERR13;
+			} else {
+				credits[years][0][i] = atof(input);
+			}
+			ERR14: printf("Please enter the grade for the semester as a decimal: ");
+			fgets(input, 10, stdin);
+			isValid = verify_grades(input);
+			if(isValid != 0){
+				printf("Enter a valid grade! ");
+				goto ERR14;
+			} else {
+				gradesPast[years][0][i] = atof(input);
+			}
+			gradePointsWeightPast[years][0][i] = gpa_class(gradesPast[years][0][i], credits[years][0][i], roundingPast[years][0][i], types[years][0][i]);
+				gradePointsUnweightPast[i][j][k] = gpa_class(gradesPast[years][0][i], credits[years][0][i], roundingPast[years][0][i], 1);
+		}
+		
