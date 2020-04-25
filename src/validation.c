@@ -68,10 +68,30 @@ int verify_final(char *input){
 }
 
 int verify_type(char *input){
-	double verify = atoi(input);
+	int verify = atoi(input);
 	if(verify <= 0){
 		return 1;
 	} else if(verify > 3){
+		return 1;
+	}
+	return 0;
+}
+
+int verify_year(char *input){
+	int verify = atoi(input);
+	if(verify <= 0){
+		return 1;
+	} else if(verify > 4){
+		return 1;
+	}
+	return 0;
+}
+
+int verify_semester(char *input){
+	int verify = atoi(input);
+	if(verify <= 0){
+		return 1;
+	} else if(verify > 2){
 		return 1;
 	}
 	return 0;

@@ -14,6 +14,8 @@ int verify_constants(char *input);
 int verify_credits(char *input);
 int verify_final(char *input);
 int verify_type(char *input);
+int verify_year(char *input);
+int verify_semester(char *input);
 
 double final_calc(double q1grade, double q2grade, double q1weight, double q2weight, double fweight, double target);
 double final_calc_multiweight(double q1grade, double q2grade, double f1grade, double q1weight, double q2weight, double f1weight, double f2weight, double target);
