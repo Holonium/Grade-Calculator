@@ -81,7 +81,7 @@ int verify_year(char *input){
 	int verify = atoi(input);
 	if(verify <= 0){
 		return 1;
-	} else if(verify > 4){
+	} else if(verify > 3){
 		return 1;
 	}
 	return 0;

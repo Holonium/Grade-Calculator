@@ -10,259 +10,139 @@ int main(){
 	char input[10];
 	
 	int isValid;
-	
-	int year;
+	int years;
 	int semester;
 	int periods;
+	double 
 	
-	ERR1: printf("Please enter how many years to include in GPA calculations, not including this year (1-4): ");
+	int teachers[4][2][8];
+	int types[4][2][8];
+	int periodsPast[4][2];
+	double gradesPast[4][2][8];
+	double roundingPast[4][2][8];
+	double gradePointsWeightPast[4][2][8];
+	double gradePointsUnweightPast[4][2][8];
+	double credits[4][2][8];
+	double qgrades[2][8];
+	double weights[4][8];
+	double rounding[8];
+	double percentages[8][11];
+	double results[8][11];
+	
+	ERR1: printf("Please enter the number of years that you have completed (1-3): ");
 	fgets(input, 10, stdin);
 	isValid = verify_year(input);
 	if(isValid != 0){
-		printf("Enter a valid year! ");
+		printf("Enter a valid number of years! ");
 		goto ERR1;
 	} else {
-		year = atoi(input);
+		years = atoi(input);
 	}
-	double gradePointsWeight[year];
-	double gradePointsUnweight[year];
-	double gradePointTotalWeight;
-	double gradePointTotalUnweight;
-	double creditsTotal;
-	ERR2: printf("Please enter what semester of the current year you are on (1-2): ");
-	fgets(input, 10, stdin);
-	isValid = verify_semester(input);
-	if(isValid != 0){
-		printf("Enter a valid semester! ");
-		goto ERR2;
-	} else {
-		semester = atoi(input);
-	}
-	for(int i = 1; i < year; i++){
+	
+	for(int i = 0; i < years; i++){
+		int year = i + 1;
 		for(int j = 0; j < 2; j++){
 			int sem = j + 1;
-			ERR3: printf("Please enter the number of periods there were in semester %i of year %i (1-8): ", sem, i);
+			ERR2: printf("Please enter the number of periods you had for semester %i of year %i (1-8): ", year, sem);
 			fgets(input, 10, stdin);
 			isValid = verify_classes(input);
-			int period;
 			if(isValid != 0){
 				printf("Enter a valid number of periods! ");
-				goto ERR3;
+				goto ERR2;
 			} else {
-				period = atoi(input);
+				periodsPast[i][j] = atoi(input);
 			}
-			double semesterGradePointsWeightSum;
-			double semesterGradePointsUnweightSum;
-			double semesterCreditsSum;
-			double semesterGrades[period];
-			double semesterRound[period];
-			double semesterCredits[period];
-			double semesterGradePointsWeight[period];
-			double semseterGradePointsUnweight[period];
-			int semesterTeachers[period];
-			int semesterTypes[period];
-			for(int k = 0; k < period; k++){
+			for(int k = 0; k < periodsPast[i][j]; k++){
 				int per = k + 1;
-				ERR4: printf("%s%i of semester %i of year %i: ", teacher_list_charter, per, sem, i);
+				ERR3: printf("%s%i of semester %i of year %i: ", teacher_list_charter, per, sem, year);
 				fgets(input, 10, stdin);
 				isValid = verify_teachers(input);
 				if(isValid != 0){
 					printf("Enter a valid teacher! ");
-					goto ERR4;
+					goto ERR3;
 				} else {
-					semesterTeachers[k] = atoi(input);
+					teachers[i][j][k] = atoi(input);
 				}
-				if(semesterTeachers[k] == 14){
-					ERR5: printf("Please enter the point at which the teacher rounds, use 1 if they do not round: ");
+				if(teachers[i][j][k] == 14){
+					ERR4: printf("Please enter the point that the teacher rounds at, using 1 of they do not round: ");
 					fgets(input, 10, stdin);
 					isValid = verify_constants(input);
 					if(isValid != 0){
-						printf("Please enter a valid rounding point! ");
-						goto ERR5;
+						printf("Enter a valid rounding point! ");
+						goto ERR4;
 					} else {
-						double semesterRoundTemp = atof(input);
-						if(semesterRoundTemp == 1){
-							semesterRound[k] = 0;
+						double temp = atof(input);
+						if(temp == 1){
+							roundingPast[i][j][k] = 0;
 						} else {
-							semesterRound[k] = semesterRoundTemp;
+							roundingPast[i][j][k] = temp;
 						}
 					}
 				} else {
-					rounding_select(semesterTeachers[k]);
-					semesterRound[k] = *roundtemp;
+					rounding_select(teachers[i][j][k]);
+					roundingPast[i][j][k] = *roundtemp;
 				}
-				ERR6: printf("Please enter the grade for period %i of semester %i of year %i as a decimal: ", per, sem, i);
-				fgets(input, 10, stdin);
-				isValid = verify_grades(input);
-				if(isValid != 0){
-					printf("Please enter a valid grade! ");
-					goto ERR6;
-				} else {
-					semesterGrades[k] = atof(input);
-				}
-				ERR7: printf("Please enter the number of credits for period %i of semester %i of year %i: ", per, sem, i);
-				fgets(input, 10, stdin);
-				isValid = verify_credits(input);
-				if(isValid != 0){
-					printf("Please enter a valid number of credits! ");
-					goto ERR7;
-				} else {
-					semesterCredits[k] = atof(input);
-				}
-				ERR8: printf("%s%i of semester %i of year %i: ", class_types, per, sem, i);
+				ERR5: printf("%s%i of semester %i of year %i (1-3): ", class_types, per, sem, year);
 				fgets(input, 10, stdin);
 				isValid = verify_type(input);
 				if(isValid != 0){
 					printf("Please enter a valid class type! ");
-					goto ERR8;
+					goto ERR5;
 				} else {
-					semesterTypes[k] = atoi(input);
+					types[i][j][k] = atoi(input);
 				}
-				semesterGradePointWeight[k] = gpa_class(semesterGrades[k], semesterCredits[k], semesterRound[k], semesterTypes[k]);
-				semesterGradePointUnweight[k] = gpa_class(semesterGrades[k], semesterCredits[k], semesterRound[k], 1);
-			}
-			for(int k = 0; k < period; k++){
-				gradePointTotalWeight = gradePointTotalWeight + semesterGradePointWeight[k];
-				gradePointTotalUnweight = gradePointTotalUnweight + semesterGradePointUnweight[k];
-				creditsTotal = creditsTotal + semesterCredits[k];
+				ERR6: printf("Please enter the number of credits the class was worth: ");
+				fgets(input, 10, stdin);
+				isValid = verify_credits(input);
+				if(isValid != 0){
+					printf("Enter a valid number of credits! ");
+					goto ERR6;
+				} else {
+					credits[i][j][k] = atof(input);
+				}
+				ERR7: printf("Please enter the grade for the semester as a decimal: ");
+				fgets(input, 10, stdin);
+				isValid = verify_grades(input);
+				if(isValid != 0){
+					printf("Enter a valid grade! ");
+					goto ERR7;
+				} else {
+					gradesPast[i][j][k] = atof(input);
+				}
+				gradePointsWeightPast[i][j][k] = gpa_class(gradesPast[i][j][k], credits[i][j][k], roundingPast[i][j][k], types[i][j][k]);
+				gradePointsUnweightPast[i][j][k] = gpa_class(gradesPast[i][j][k], credits[i][j][k], roundingPast[i][j][k], 1);
 			}
 		}
 	}
-	ERR9: printf("Please enter the number of periods you have this year (1-8): ");
-	isValid = verify_classes(input);
+	ERR8: printf("Please enter the semester that is currently in progress (1-2): ");
+	fgets(input, 10, stdin);
+	isValid = verify_semester(input);
 	if(isValid != 0){
-		printf("Enter a valid number of periods! ");
-		goto ERR9;
+		printf("Enter a valid semester! ");
+		goto ERR8;
 	} else {
-		periods = atoi(input);
+		semester = atoi(input);
 	}
-	
-	int teachers[periods];
-	double q1grades[periods];
-	double q2grades[periods];
-	double q1weights[periods];
-	double q2weights[periods];
-	double f1weights[periods];
-	double f2weights[periods];
-	double f1grades[periods];
-	double rounding[periods];
-	double credits[periods];
-	double types[periods];
-	double percentages[periods][11];
-	double results[periods][11];
-	
-	for(int i = 0; i < periods; i++){
-		int per = i + 1;
-		ERR10: printf("%s%i: ", teacher_list_charter, per);
+	if(semester == 2){
+		ERR9: printf("Please enter the number of periods you had for semester 1 of the current year (1-8): ");
 		fgets(input, 10, stdin);
-		isValid = verify_teachers(input);
+		isValid = verify_classes(input);
 		if(isValid != 0){
-			printf("Enter a valid teacher! ");
-			goto ERR10;
+			printf("Enter a valid number of periods! ");
+			goto ERR9;
 		} else {
-			teachers[i] = atoi(input);
+			periodsPast[4][0] = atoi(input);
 		}
-		if(teachers[i] == 14){
-			ERR11: printf("Please enter the weight of the first quarter as a decimal: ");
+		for(int i = 0; i < periodsPast[4][0]; i++){
+			int per = i + 1;
+			int year = years + 1;
+			ERR10: printf("%s%i of semester 1 of the current year: ", teacher_list_charter, per);
 			fgets(input, 10, stdin);
-			isValid = verify_constants(input);
+			isValid = verify_teachers(input);
 			if(isValid != 0){
-				printf("Enter a valid weight! ");
-				goto ERR11;
+				printf("Enter a valid teacher! ");
+				goto ERR10;
 			} else {
-				q1weights[i] = atof(input);
+				teachers[year][0][i] = atoi(input);
 			}
-			ERR12: printf("Please enter the weight of the second quarter as a decimal: ");
-			fgets(input, 10, stdin);
-			isValid = verify_constants(input);
-			if(isValid != 0){
-				printf("Enter a valid weight! ");
-				goto ERR12;
-			} else {
-				q2weights[i] = atof(input);
-			}
-			ERR13: printf("Please enter the weight of the final as a decimal: ");
-			fgets(input, 10, stdin);
-			isValid = verify_constants(input);
-			if(isValid != 0){
-				printf("Enter a valid weight! ");
-				goto ERR13;
-			} else {
-				fweights[i] = atof(input);
-			}
-			ERR14: printf("Please enter the point that the teacher rounds at, use 1 if they do not round: ");
-			fgets(input, 10, stdin);
-			isValid = verify_constants(input);
-			if(isValid != 0){
-				printf("Enter a valid rounding point! ");
-				goto ERR14;
-			} else {
-				double roundTemp = atof(input);
-				if(roundTemp == 1){
-					rounding[i] = 0;
-				} else {
-					rounding[i] = atof(input);
-				}
-			}
-		} else {
-			q1weight_select(teachers[i]);
-			q1weights[i] = *q1temp;
-			q2weight_select(teachers[i]);
-			q2weights[i] = *q2temp;
-			fweight_select(teachers[i]);
-			f1weights[i] = *fwtemp;
-			if(teachers[i] == 3){
-				f2weights[i] = *f1wtemp;
-			} else {
-				f2weights[i] = 0;
-			}
-			rounding_select(teachers[i]);
-			rounding[i] = *roundtemp;
-		}
-		ERR15: printf("%sfirst%s", grade1, grade2);
-		fgets(input, 10, stdin);
-		isValid = verify_grades(input);
-		if(isValid != 0){
-			printf("Enter a valid grade! ");
-			goto ERR15;
-		} else {
-			q1grades[i] = atof(input);
-		}
-		ERR16: printf("%ssecond%s", grade1, grade2);
-		fgets(input, 10, stdin);
-		isValid = verify_grades(input);
-		if(isValid != 0){
-			printf("Enter a valid grade! ");
-			goto ERR16;
-		} else {
-			q2grades[i] = atof(input);
-		}
-		if(teachers[i] == 3){
-			ERR17: printf("What is your grade for the first part of the final? ");
-			fgets(input, 10, stdin);
-			isValid = verify_grades(input);
-			if(isValid != 0){
-				printf("Enter a valid grade! ");
-				goto ERR17;
-			} else {
-				f1grades[i] = atof(input);
-			}
-		}
-		ERR18: printf("Please enter the number of credits for this class: ");
-		fgets(input, 10, stdin);
-		isValid = verify_credits(input);
-		if(isValid != 0){
-			printf("Enter a valid number of credits! ");
-			goto ERR18;
-		} else {
-			credits[i] = atof(input);
-		}
-		ERR19: printf("%s%i: ", class_types, per);
-		fgets(input, 10, stdin);
-		isValid = verify_type(input);
-		if(isValid != 0){
-			printf("Enter a valid class type! ");
-			goto ERR19;
-		} else {
-			types[i] = atoi(input);
-		}
+			if(teachers[year][0][i] == 14){

@@ -11,4 +11,12 @@ const char *class_types = "1) Standard\n2) Honors\n3) AP\nPlease enter the numbe
 char *grade1 = "What is your grade for the ";
 char *grade2 = " quarter of this semester? ";
 
+char *guaranteed1 = "You are guaranteed to get at least an ";
+char *guaranteed2 = "You are guaranteed to get at least a ";
+char *guaranteed3 = " for the semester!";
+
+char *out1 = "You need at least a ";
+char *out2 = " to get a ";
+char *out3 = " for this semester.";
+
 #endif
