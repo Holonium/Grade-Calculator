@@ -12,8 +12,11 @@ int main(){
 	double totalCredits;
 	double totalGradePointsWeighted;
 	
-	printf("Do you wish to calculate your GPA? (Y/N) ");
-	scanf("%c", GPA);
+	while(verify_YN(GPA != 0)){
+		printf("Do you wish to calculate your GPA? (Y/N) ");
+		scanf("%c", GPA);
+		printf("Invalid input! ");
+	}
 	if(GPA == "Y"){
 		int years;
 		while(verify_year(years) != 0){
