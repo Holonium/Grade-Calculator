@@ -17,3 +17,6 @@ teachers.o: teachers.c functions.h
 	
 validation.o: validation.c functions.h
 	gcc -fsanitize=address,undefined -g -m64 -c -o validation.o validation.c
+	
+clean:
+	rm grades

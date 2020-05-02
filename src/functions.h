@@ -8,6 +8,12 @@ double *roundtemp;
 double *f1wtemp;
 
 int verify_YN(char input);
+int verify_years(int input);
+int verify_periods(int input);
+int verify_grade(double input);
+int verify_type(int input);
+int verify_credits(double input);
+int verify_rounding(double input);
 
 double final_calc(double q1grade, double q2grade, double q1weight, double q2weight, double fweight, double target);
 double final_calc_multiweight(double q1grade, double q2grade, double f1grade, double q1weight, double q2weight, double f1weight, double f2weight, double target);
@@ -18,7 +24,7 @@ void q2weight_select(int teacher);
 void fweight_select(int teacher);
 void rounding_select(int teacher);
 
-double gpa_class(double qgrade, double credits, double rounding, int type);
+double gpa_class(double grade, double credits, double rounding, int type);
 double gpa_semester(double gradePointSum, double totalCredits);
 double gpa_full(double gradePointSum, double totalCredits);
 

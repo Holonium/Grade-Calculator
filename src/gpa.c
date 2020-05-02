@@ -2,7 +2,7 @@
 #include "functions.h"
 #include "grades.h"
 
-double gpa_class(double qgrade, double credits, double rounding, int type){
+double gpa_class(double grade, double credits, double rounding, int type){
 	double unmod;
 	double percentages[11];
 	for(int i = 0; i < 11; i++){
@@ -11,12 +11,12 @@ double gpa_class(double qgrade, double credits, double rounding, int type){
 	for(int i = 0; i < 11; i++){
 		int j = i + 1;
 		if(i == 0){
-			if(qgrade >= percentages[i]){
+			if(grade >= percentages[i]){
 				unmod = gpa;
 				i = 11;
 			}
 		} else if(i > 0){
-			if(grade >= percentages[j] && qgrade < percentages[i]){
+			if(grade >= percentages[j] && grade < percentages[i]){
 				unmod = gpa - (i / 3);
 				i = 11;
 			}
