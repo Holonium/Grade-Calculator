@@ -7,7 +7,7 @@ double *fwtemp;
 double *roundtemp;
 double *f1wtemp;
 
-int verify_YN(char input);
+int verify_YN(int input);
 int verify_years(int input);
 int verify_periods(int input);
 int verify_grade(double input);

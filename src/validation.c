@@ -3,14 +3,14 @@
 #include <string.h>
 #include "functions.h"
 
-int verify_YN(char input){
-		if(input == 'Y'){
-			return 0;
-		} else if(input == 'N'){
-			return 0;
-		} else {
-			return 1;
-		}
+int verify_YN(int input){
+	if(input == 0){
+		return 0;
+	} else if(input == 1){
+		return 0;
+	} else {
+		return 1;
+	}
 }
 
 int verify_years(int input){

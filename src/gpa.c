@@ -2,6 +2,8 @@
 #include "functions.h"
 #include "grades.h"
 
+const double gpa = 4.00;
+
 double gpa_class(double grade, double credits, double rounding, int type){
 	double unmod;
 	double percentages[11];
