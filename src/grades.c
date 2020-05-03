@@ -27,67 +27,107 @@ int main(){
 	printf("Welcome to %s of the grade calculator.\n", version);
 	printf("WARNING: THIS IS AN ALPHA RELEASE, STABILITY IS NOT ENSURED!\n");
 	
-	//char input[10];
-	int GPA;
+	char *GPA = malloc(2 * sizeof(char));
+	memset(GPA, '\0', 2);
 	double totalCredits = 0;
 	double totalGradePointsWeighted = 0;
 	double totalGradePointsUnweighted = 0;
-	
-	while(verify_YN(GPA) != 0){
-		printf("Do you wish to calculate your GPA? Use a 0 for No or a 1 for Yes. ");
-		scanf("%d", &GPA);
+	printf("Before while1.\n");
+
+	while(verify_YN(GPA) == 0){
+		printf("Do you wish to calculate your GPA? (Y/N) ");
+		fflush(stdin);
+		scanf("%c", GPA);
+		if(verify_YN(GPA) != 0){
+			break;
+		}
 		printf("Invalid input! ");
 	}
-	if(GPA == 1){
-		int years;
+	if(verify_YN(GPA) == 1){
+		int years = 0;
 		while(verify_years(years) != 0){
 			printf("Please enter the number of years that you have completed (1-3): ");
+			fflush(stdin);
 			scanf("%i", &years);
+			if(verify_years(years) == 0){
+				break;
+			}
 			printf("Enter a valid number of years! ");
 		}
 		for(int i = 0; i < years; i++){
-			int year = years + 1;
+			int year = i + 1;
 			for(int j = 1; j < 3; j++){
-				int periods;
+				int periods = 0;
 				while(verify_periods(periods) != 0){
 					printf("Please enter the number of periods for semester %i of year %i (1-8): ", j, year);
+					fflush(stdin);
 					scanf("%i", &periods);
+					if(verify_periods(periods) == 0){
+						break;
+					}
 					printf("Enter a valid number of periods! ");
 				}
 				for(int k = 0; k < periods; k++){
-					double grade;
-					int type;
-					double credits;
-					double roundingTemp;
+					double grade = -1;
+					int type = 0;
+					double credits = 0;
+					double roundingTemp = 2;
 					int period = k + 1;
 					while(verify_grade(grade) != 0){
 						printf("Please enter your grade for period %i of semester %i of year %i: ", period, j, year);
+						fflush(stdin);
 						scanf("%lf", &grade);
+						if(verify_grade(grade) == 0){
+							break;
+						}
 						printf("Enter a valid grade! ");
 					}
 					while(verify_type(type) != 0){
 						printf("%s%i of semester %i of year %i (1-3): ", class_types, period, j, year);
+						fflush(stdin);
 						scanf("%i", &type);
+						if(verify_type(type) == 0){
+							break;
+						}
 						printf("Enter a valid type! ");
 					}
 					while(verify_credits(credits) != 0){
 						printf("Please enter the number of credits for period %i of semester %i of year %i: ", period, j, year);
+						fflush(stdin);
 						scanf("%lf", &credits);
+						if(verify_credits(credits) == 0){
+							break;
+						}
 						printf("Enter a valid number of credits! ");
 					}
 					while(verify_rounding(roundingTemp) != 0){
 						printf("Please enter the point at which the teacher rounds: ");
+						fflush(stdin);
 						scanf("%lf", &roundingTemp);
+						if(verify_rounding(roundingTemp) == 0){
+							break;
+						}
 						printf("Enter a valid rounding point! ");
 					}
-					double rounding = 1 - roundingTemp;
+					double rounding;
+					if(roundingTemp == 0){
+						rounding = 1;
+					} else {
+						rounding = 1 - roundingTemp;
+					}
 					totalGradePointsUnweighted += gpa_class(grade, credits, rounding, 1);
 					totalGradePointsWeighted += gpa_class(grade, credits, rounding, type);
 					totalCredits += credits;
+					printf("%.3f %.3f %.3f\n", totalGradePointsUnweighted, totalGradePointsWeighted, totalCredits);
 				}
 			}
 		}
+		double currentGPAWeight = gpa_full(totalGradePointsWeighted, totalCredits);
+		double currentGPAUnweight = gpa_full(totalGradePointsUnweighted, totalCredits);
+		printf("Your current weighted GPA is: %.3f\nYour current unweighted GPA is: %.3f\n", currentGPAWeight, currentGPAUnweight);
 	}
 	
+	free(GPA);
+
 	return 0;
 }

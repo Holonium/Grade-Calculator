@@ -17,10 +17,16 @@ double gpa_class(double grade, double credits, double rounding, int type){
 				unmod = gpa;
 				i = 11;
 			}
-		} else if(i > 0){
+		} else if(i > 0 && i < 10){
 			if(grade >= percentages[j] && grade < percentages[i]){
 				unmod = gpa - (i / 3);
 				i = 11;
+			}
+		} else if(i == 10){
+			if(grade >= percentages[i]){
+				unmod = gpa - (i / 3);
+			} else if( grade <= percentages[i]){
+				unmod = 0;
 			}
 		}
 	}

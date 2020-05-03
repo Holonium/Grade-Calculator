@@ -3,13 +3,13 @@
 #include <string.h>
 #include "functions.h"
 
-int verify_YN(int input){
-	if(input == 0){
-		return 0;
-	} else if(input == 1){
-		return 0;
-	} else {
+int verify_YN(char *input){
+	if(strcmp(input, "Y") == 0){
 		return 1;
+	} else if(strcmp(input, "N") == 0){
+		return 2;
+	} else {
+		return 0;
 	}
 }
 
