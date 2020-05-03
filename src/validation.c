@@ -4,21 +4,11 @@
 #include "functions.h"
 
 int verify_YN(char *input){
-	char *Y = malloc(2 * sizeof(char));
-	strcpy(Y, "Y");
-	char *N = malloc(2 * sizeof(char));
-	strcpy(N, "N");
-	if(strcmp(input, Y) == 0){
-		free(Y);
-		free(N);
+	if(strcmp(input, "Y") == 0){
 		return 1;
-	} else if(strcmp(input, N) == 0){
-		free(Y);
-		free(N);
+	} else if(strcmp(input, "N") == 0){
 		return 2;
 	} else {
-		free(Y);
-		free(N);
 		return 0;
 	}
 }

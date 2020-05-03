@@ -27,10 +27,8 @@ int main(){
 	printf("Welcome to %s of the grade calculator.\n", version);
 	printf("WARNING: THIS IS AN ALPHA RELEASE, STABILITY IS NOT ENSURED!\n");
 	
-	//char input[10];
 	char *GPA = malloc(2 * sizeof(char));
 	memset(GPA, '\0', 2);
-	printf("%u\n", &GPA);
 	double totalCredits = 0;
 	double totalGradePointsWeighted = 0;
 	double totalGradePointsUnweighted = 0;
