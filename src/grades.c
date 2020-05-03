@@ -28,20 +28,30 @@ int main(){
 	printf("WARNING: THIS IS AN ALPHA RELEASE, STABILITY IS NOT ENSURED!\n");
 	
 	//char input[10];
-	int GPA;
+	char *GPA = malloc(2 * sizeof(char));
+	memset(GPA, '\0', 2);
+	printf("%u\n", &GPA);
 	double totalCredits = 0;
 	double totalGradePointsWeighted = 0;
 	double totalGradePointsUnweighted = 0;
-	
-	while(verify_YN(GPA) != 0){
+	printf("Before while1.\n");
+
+	while(verify_YN(GPA) == 0){
 		printf("Do you wish to calculate your GPA? Use a 0 for No or a 1 for Yes. ");
-		scanf("%d", &GPA);
+		fflush(stdin);
+		scanf("%c", GPA);
+		if(verify_YN(GPA) == 0){
+			continue;
+		} else {
+			break;
+		}
 		printf("Invalid input! ");
 	}
-	if(GPA == 1){
+	if(verify_YN(GPA) == 1){
 		int years;
 		while(verify_years(years) != 0){
 			printf("Please enter the number of years that you have completed (1-3): ");
+			fflush(stdin);
 			scanf("%i", &years);
 			printf("Enter a valid number of years! ");
 		}
@@ -51,6 +61,7 @@ int main(){
 				int periods;
 				while(verify_periods(periods) != 0){
 					printf("Please enter the number of periods for semester %i of year %i (1-8): ", j, year);
+					fflush(stdin);
 					scanf("%i", &periods);
 					printf("Enter a valid number of periods! ");
 				}
@@ -62,21 +73,25 @@ int main(){
 					int period = k + 1;
 					while(verify_grade(grade) != 0){
 						printf("Please enter your grade for period %i of semester %i of year %i: ", period, j, year);
+						fflush(stdin);
 						scanf("%lf", &grade);
 						printf("Enter a valid grade! ");
 					}
 					while(verify_type(type) != 0){
 						printf("%s%i of semester %i of year %i (1-3): ", class_types, period, j, year);
+						fflush(stdin);
 						scanf("%i", &type);
 						printf("Enter a valid type! ");
 					}
 					while(verify_credits(credits) != 0){
 						printf("Please enter the number of credits for period %i of semester %i of year %i: ", period, j, year);
+						fflush(stdin);
 						scanf("%lf", &credits);
 						printf("Enter a valid number of credits! ");
 					}
 					while(verify_rounding(roundingTemp) != 0){
 						printf("Please enter the point at which the teacher rounds: ");
+						fflush(stdin);
 						scanf("%lf", &roundingTemp);
 						printf("Enter a valid rounding point! ");
 					}
@@ -89,5 +104,7 @@ int main(){
 		}
 	}
 	
+	free(GPA);
+
 	return 0;
 }

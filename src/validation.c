@@ -3,13 +3,23 @@
 #include <string.h>
 #include "functions.h"
 
-int verify_YN(int input){
-	if(input == 0){
-		return 0;
-	} else if(input == 1){
-		return 0;
-	} else {
+int verify_YN(char *input){
+	char *Y = malloc(2 * sizeof(char));
+	strcpy(Y, "Y");
+	char *N = malloc(2 * sizeof(char));
+	strcpy(N, "N");
+	if(strcmp(input, Y) == 0){
+		free(Y);
+		free(N);
 		return 1;
+	} else if(strcmp(input, N) == 0){
+		free(Y);
+		free(N);
+		return 2;
+	} else {
+		free(Y);
+		free(N);
+		return 0;
 	}
 }
 
