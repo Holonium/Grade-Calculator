@@ -35,7 +35,7 @@ int main(){
 	printf("Before while1.\n");
 
 	while(verify_YN(GPA) == 0){
-		printf("Do you wish to calculate your GPA? Use a 0 for No or a 1 for Yes. ");
+		printf("Do you wish to calculate your GPA? (Y/N) ");
 		fflush(stdin);
 		scanf("%c", GPA);
 		if(verify_YN(GPA) != 0){
@@ -55,7 +55,7 @@ int main(){
 			printf("Enter a valid number of years! ");
 		}
 		for(int i = 0; i < years; i++){
-			int year = years + 1;
+			int year = i + 1;
 			for(int j = 1; j < 3; j++){
 				int periods = 0;
 				while(verify_periods(periods) != 0){
@@ -118,9 +118,13 @@ int main(){
 					totalGradePointsUnweighted += gpa_class(grade, credits, rounding, 1);
 					totalGradePointsWeighted += gpa_class(grade, credits, rounding, type);
 					totalCredits += credits;
+					printf("%.3f %.3f %.3f\n", totalGradePointsUnweighted, totalGradePointsWeighted, totalCredits);
 				}
 			}
 		}
+		double currentGPAWeight = gpa_full(totalGradePointsWeighted, totalCredits);
+		double currentGPAUnweight = gpa_full(totalGradePointsUnweighted, totalCredits);
+		printf("Your current weighted GPA is: %.3f\nYour current unweighted GPA is: %.3f\n", currentGPAWeight, currentGPAUnweight);
 	}
 	
 	free(GPA);
