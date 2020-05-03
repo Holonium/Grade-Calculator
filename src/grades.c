@@ -35,7 +35,7 @@ int main(){
 	
 	while(verify_YN(GPA) != 0){
 		printf("Do you wish to calculate your GPA? Use a 0 for No or a 1 for Yes. ");
-		scanf("%i", &GPA);
+		scanf("%d", &GPA);
 		printf("Invalid input! ");
 	}
 	if(GPA == 1){
