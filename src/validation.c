@@ -54,3 +54,17 @@ int verify_rounding(double input){
 	}
 	return 0;
 }
+
+int verify_teacher(int input){
+	if(input < 1 || input > 14){
+		return 1;
+	}
+	return 0;
+}
+
+int verify_weight(double input){
+	if(input < 0 || input > 1){
+		return 1;
+	}
+	return 0;
+}
