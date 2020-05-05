@@ -4,7 +4,7 @@
 #include "grades.h"
 #include "functions.h"
 
-const char *version = "v1.0.0a1";
+const char *version = "v1.0.0";
 const double percentagesRaw[] = {93,90,87,83,80,77,73,70,67,63,60};
 const char grades[] = {'A','A','B','B','B','C','C','C','D','D','D'};
 const char symbol[] = {'\0','-','+','\0','-','+','\0','-','+','\0','-'};
@@ -25,7 +25,7 @@ const char *out3 = " for this semester.";
 
 int main(){
 	printf("Welcome to %s of the grade calculator.\n", version);
-	printf("WARNING: THIS IS AN ALPHA RELEASE, STABILITY IS NOT ENSURED!\n");
+	//printf("WARNING: THIS IS AN ALPHA RELEASE, STABILITY IS NOT ENSURED!\n");
 	
 	char *GPA = malloc(2 * sizeof(char));
 	memset(GPA, '\0', 2);
