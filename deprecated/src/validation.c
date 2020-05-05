@@ -20,7 +20,7 @@ int verify_teacher(char *input){
 	int verify = atoi(input);
 	if(verify == 0){
 		return 1;
-	} else if(verify > 13){
+	} else if(verify > 14){
 		return 1;
 	} else if(verify < 1){
 		return 1;
@@ -33,6 +33,17 @@ int verify_grades(char *input){
 	if(verify == 0){
 		return 1;
 	} else if(verify < 0){
+		return 1;
+	}
+	return 0;
+}
+int verify_constants(char *input){
+	double verify = atof(input);
+	if(verify == 0){
+		return 0;
+	} else if(verify < 0){
+		return 1;
+	} else if(verify > 1){
 		return 1;
 	}
 	return 0;

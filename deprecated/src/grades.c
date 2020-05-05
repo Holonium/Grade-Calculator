@@ -1,11 +1,12 @@
 //This version implements multiple files, support for up to 8 classes, more teachers, a custom header, and an updated style.
+//v8.02 adds the option for other teachers.
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "calc.h"
 
 int main(){
-	double version = 8.01;
+	double version = 8.02;
 	int periods;
 	double percentagesRaw[] = {93,90,87,83,80,77,73,70,67,63,60};
 	char grades[] = {'A','A','B','B','B','C','C','C','D','D','D'};
@@ -37,7 +38,7 @@ int main(){
 	double results[8][11];
 
 	for(int i = 0; i < periods; i++){
-		char *teacher_list = "1) Mrs. Baker\n2) Mr. Sabatke\n3) Ms. Bright\n4) Mr. Ginorio\n5) Mr. McCormack\n6) Mr. Gabrielsen\n7) Mr. Harrison\n8) Mr. Williams\n9) Mr. Hall\n10) Mrs. Vaughan\n11) Mrs. Ketchum\n12) Ms. Solsvik\n13) Mr. Rigg\nPlease enter the number of the teacher for period ";
+		char *teacher_list = "1) Mrs. Baker\n2) Mr. Sabatke\n3) Ms. Bright\n4) Mr. Ginorio\n5) Mr. McCormack\n6) Mr. Gabrielsen\n7) Mr. Harrison\n8) Mr. Williams\n9) Mr. Hall\n10) Mrs. Vaughan\n11) Mrs. Ketchum\n12) Ms. Solsvik\n13) Mr. Rigg\n14) Other\nPlease enter the number of the teacher for period ";
 		int period = i + 1;
 		ERR2: printf("%s%i: ",teacher_list,period);
 		fgets(input, 10, stdin);
@@ -49,15 +50,53 @@ int main(){
 			teachers[i] = atoi(input);
 		}
 		int temp = teachers[i];
-		q1weight_select(temp);
-		q1weights[i] = *q1temp;
-		q2weight_select(temp);
-		q2weights[i] = *q2temp;
-		fweight_select(temp);
-		fweights[i] = *fwtemp;
-		rounding_select(temp);
-		rounding[i] = *roundtemp;
-		
+		if(temp == 14){
+			ERR5: printf("Please enter the weight of the first quarter as a decimal: ");
+			fgets(input, 10, stdin);
+			isValid = verify_constants(input);
+			if(isValid != 0){
+				printf("Enter a valid weight! ");
+				goto ERR5;
+			} else {
+				q1weights[i] = atof(input);
+			}
+			ERR6: printf("Please enter the weight of the second quarter as a decimal: ");
+			fgets(input, 10, stdin);
+			isValid = verify_constants(input);
+			if(isValid != 0){
+				printf("Enter a valid weight! ");
+				goto ERR6;
+			} else {
+				q2weights[i] = atof(input);
+			}
+			ERR7: printf("Please enter the weight of the final as a decimal: ");
+			fgets(input, 10, stdin);
+			isValid = verify_constants(input);
+			if(isValid != 0){
+				printf("Enter a valid weight! ");
+				goto ERR7;
+			} else {
+				fweights[i] = atof(input);
+			}
+			ERR8: printf("Please enter the point that the teacher rounds at: ");
+			fgets(input, 10, stdin);
+			isValid = verify_constants(input);
+			if(isValid != 0){
+				printf("Enter a valid rounding point! ");
+				goto ERR8;
+			} else {
+				rounding[i] = atof(input);
+			}
+		} else {
+			q1weight_select(temp);
+			q1weights[i] = *q1temp;
+			q2weight_select(temp);
+			q2weights[i] = *q2temp;
+			fweight_select(temp);
+			fweights[i] = *fwtemp;
+			rounding_select(temp);
+			rounding[i] = *roundtemp;
+		}
 		char *grade1 = "What is your grade for the ";
 		char *grade2 = " quarter of this semester? ";
 		
