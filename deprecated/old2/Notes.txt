@@ -1,6 +1,0 @@
-Notes:
-Variables:
-Teachers - Need 6 integers.
-Periods - 1 integer.
-Grades - Array of doubles, 2 by 6.
-Percentages - doubles, 6 by 11.
