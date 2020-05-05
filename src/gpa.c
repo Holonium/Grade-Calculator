@@ -5,6 +5,7 @@
 const double gpa = 4.00;
 
 double gpa_class(double grade, double credits, double rounding, int type){
+	double percentagesRaw[] = {93,90,87,83,80,77,73,70,67,63,60};
 	double unmod;
 	double percentages[11];
 	for(int i = 0; i < 11; i++){

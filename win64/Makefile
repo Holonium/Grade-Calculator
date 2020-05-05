@@ -19,4 +19,4 @@ validation.o: validation.c functions.h
 	x86_64-w64-mingw32-gcc -m64 -c -o validation.o validation.c
 	
 clean:
-	rm grades 
+	rm grades_x64.exe

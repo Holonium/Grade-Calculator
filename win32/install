@@ -1,6 +1,7 @@
 #!/bin/sh
 
-cp ../src/* .
+cp ../src/*.c .
+cp ../src/*.h .
 
 make
 
